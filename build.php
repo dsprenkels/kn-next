@@ -1,15 +1,22 @@
 #!/usr/bin/env php
 <?php
 
+// define build files here -- for eacht .html-file a .twig-file must exist
+// in templates/
+$FILES = array(
+	'index.html' => array(
+		'php_self' => 'index.html',
+		'title' => null
+	)
+);
+
+// define constants
 define('ASSETS_DIR', 'assets');
 define('TEMPLATES_DIR', 'templates/');
 define('DEFAULT_BUILD_DIR', 'build');
 
+// include TWIG
 require_once("vendor/autoload.php");
-
-$FILES = array(
-	'index.html' => array()	
-);
 
 // default to build when argv is empty
 if (count($argv) === 1) {
@@ -29,6 +36,13 @@ if (in_array('help', $argv)) {
 
 // build function
 function build($argv, $FILES) {
+	// Specify tidy-configuration
+	$tidy_config = array(
+		'indent' => true,
+		'output-xhtml' => true,
+		'wrap' => 200);
+
+	// start build
 	$build_i = array_search('build', $argv);
 	$build_dir = array_key_exists($build_i+1, $argv) ? $argv[$build_i+1] : DEFAULT_BUILD_DIR;
 	echo 'cp -r ' . ASSETS_DIR . ' ' . $build_dir . "\n";
@@ -36,34 +50,23 @@ function build($argv, $FILES) {
 	echo "building... ";
 	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR));
 	foreach ($FILES as $filename => $context) {
-		file_put_contents($build_dir . '/' . $filename,
-			$twig->render(basename($filename, '.html') . '.twig', $context));
+		$html = $twig->render(basename($filename, '.html') . '.twig', $context);
+		$tidy = new tidy;
+		$tidy->parseString($html, $tidy_config, 'utf8');
+		$tidy->cleanRepair();
+		file_put_contents($build_dir . '/' . $filename, tidy_get_output($tidy));
 	}
 	echo "done\n";
 }
 
 // clean function
 function clean($argv) {
-	$build_i = array_search('build', $argv);
+	$build_i = array_search('clean', $argv);
 	$dir = array_key_exists($build_i+1, $argv) ? $argv[$build_i+1] : DEFAULT_BUILD_DIR;
-	echo "cleaning '$dir' directory... ";
 	if (! is_dir($dir)) {
-		goto clean_end;
+		return;
 	}
-	$it = new RecursiveDirectoryIterator($dir);
-	$files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
-	foreach($files as $file) {
-	    if ($file->getFilename() === '.' || $file->getFilename() === '..') {
-	        continue;
-	    }
-	    if ($file->isDir()){
-	        rmdir($file->getRealPath());
-	    } else {
-	        unlink($file->getRealPath());
-	    }
-	}
-	rmdir($dir);
-	clean_end:
-	echo "done\n";
+	echo 'rm -rf ' . $dir . "\n";
+	system('rm -rf ' . $dir);
 }
 

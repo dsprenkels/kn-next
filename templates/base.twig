@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block head %}
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<title>Studentenvereniging Karpe Noktem</title>
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+// This piece of code makes the half-fixed menubar work :)
+if (! $.browser.mobile) {
+	$(window).scroll(function(e) {
+	    var pos = 400-70;
+	    if($(window).scrollTop() > pos) {
+	        $('#header').css({
+	            position: 'fixed',
+	            width: '100%',
+	            top: -pos
+	        });
+	    } else {
+	        $('#header').css({
+	            position: 'static',
+	            top: pos
+	        });
+	    }
+	});
+}
+	</script>
+{% endblock head %}
+</head>
+<body>
+	<div id="pageWrapper">
+		<div id="header">
+			<div class="container">
+{% from 'macros.twig' import header_link as header_link %}
+				<div id="logo">{{ header_link('.', '<img src="img/logo.png" alt="Karpe Noktem" width="310px">', php_self == 'index.html') }}</div>
+				<div id="navigator" class="container">
+					<ul>
+						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
+						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
+						<li>{{ header_link('#login', 'login', false, ' onclick="login()"') }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container">
+{% block content %}
+{% endblock content %}
+			</div>
+			<div id="footer">
+				<div class="container">
+{% block footer %}
+					&copy; Alternatieve studentenvereniging <span class="variex">Karpe Noktem</span>
+					<small><a id="scrollUp" href="#">Terug naar boven</a></small>
+{% endblock footer %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+// ScrollUp animation
+$("#scrollUp").click(function(event) {
+	$('html, body').animate({scrollTop:0}, 300);
+	event.preventDefault();
+});
+	</script>
+</body>
+</html>
