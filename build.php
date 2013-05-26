@@ -5,8 +5,16 @@
 // in templates/
 $FILES = array(
 	'index.html' => array(
-		'php_self' => 'index.html',
-		'title' => null
+		'php_self' => 'index.html'
+	),
+	'contact.html' => array(
+		'php_self' => 'contact.html'
+	),
+	'lidworden.html' => array(
+		'php_self' => 'lidworden.html'
+	),
+	'agenda.html' => array(
+		'php_self' => 'agenda.html'
 	)
 );
 
@@ -36,25 +44,34 @@ if (in_array('help', $argv)) {
 
 // build function
 function build($argv, $FILES) {
-	// Specify tidy-configuration
-	$tidy_config = array(
-		'indent' => true,
-		'output-xhtml' => true,
-		'wrap' => 200);
-
 	// start build
 	$build_i = array_search('build', $argv);
 	$build_dir = array_key_exists($build_i+1, $argv) ? $argv[$build_i+1] : DEFAULT_BUILD_DIR;
 	echo 'cp -r ' . ASSETS_DIR . ' ' . $build_dir . "\n";
 	system('cp -r ' . ASSETS_DIR . ' ' . $build_dir);
 	echo "building... ";
-	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR));
+
+	// build new Twig Environment
+	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
+			'auto_reload' => true,
+			'strict_variables' => true,
+			'autoescape' => false
+		));
+
+	// add a rot13 filter for email
+	$rot13_filter = new Twig_SimpleFilter('rot13', 'str_rot13');
+	$twig->addFilter($rot13_filter);
+
+	// add email obscurify function
+	$email_function = new Twig_SimpleFunction('email', function ($addr) {
+    	return '<script type="text/javascript">document.write("' . str_rot13($addr) . '".rot13())</script>
+<noscript>(email adres verborgen)</noscript>'; 
+	});
+	$twig->addFunction($email_function);
+
 	foreach ($FILES as $filename => $context) {
 		$html = $twig->render(basename($filename, '.html') . '.twig', $context);
-		$tidy = new tidy;
-		$tidy->parseString($html, $tidy_config, 'utf8');
-		$tidy->cleanRepair();
-		file_put_contents($build_dir . '/' . $filename, tidy_get_output($tidy));
+		file_put_contents($build_dir . '/' . $filename, $html);
 	}
 	echo "done\n";
 }

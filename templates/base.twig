@@ -4,30 +4,13 @@
 {% block head %}
 	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
+	<meta name="robots" content="INDEX, FOLLOW">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="icon" type="image/png" href="favicon.png">
-	<title>Studentenvereniging Karpe Noktem</title>
-	<script src="js/jquery.min.js"></script>
-	<script type="text/javascript">
-// This piece of code makes the half-fixed menubar work :)
-if (! $.browser.mobile) {
-	$(window).scroll(function(e) {
-	    var pos = 400-70;
-	    if($(window).scrollTop() > pos) {
-	        $('#header').css({
-	            position: 'fixed',
-	            width: '100%',
-	            top: -pos
-	        });
-	    } else {
-	        $('#header').css({
-	            position: 'static',
-	            top: pos
-	        });
-	    }
-	});
-}
-	</script>
+	<title>{% if title is defined and title %}{{ title }} - {% endif %}Studentenvereniging Karpe Noktem</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
 <body>
@@ -40,6 +23,7 @@ if (! $.browser.mobile) {
 					<ul>
 						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
 						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
+						<li>{{ header_link('contact.html', 'contact', php_self == 'contact.html') }}</li>
 						<li>{{ header_link('#login', 'login', false, ' onclick="login()"') }}</li>
 					</ul>
 				</div>

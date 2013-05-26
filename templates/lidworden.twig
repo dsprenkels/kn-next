@@ -1,0 +1,12 @@
+{% extends 'base.twig' %}
+
+{% set title = 'Lid worden' %}
+
+{% block content %}
+<h1>lid worden</h1>
+<dl>
+	<dt>Als je lid wilt worden kun je altijd een mailtje sturen naar:</dt>
+	<dd>{{ email("bestuur@karpenoktem.nl") }}</dd>
+</dl>
+<p>Je mag ook als je geen lid bent gewoon bij ons langskomen.</p>
+{% endblock content %}
