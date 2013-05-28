@@ -22,9 +22,9 @@
 				<div id="navigator" class="container">
 					<ul>
 						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
+						<li>{{ header_link('gesciedenis.html', 'geschiedenis', php_self == 'geschiedenis.html') }}</li>
 						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
 						<li>{{ header_link('contact.html', 'contact', php_self == 'contact.html') }}</li>
-						<li>{{ header_link('#login', 'login', false, ' onclick="login()"') }}</li>
 					</ul>
 				</div>
 			</div>
@@ -32,12 +32,15 @@
 		<div id="content">
 			<div class="container">
 {% block content %}
+{% if title is defined and title %}
+	<h1>{{ title|lower }}</h1>
+{% endif %}
 {% endblock content %}
 			</div>
 			<div id="footer">
 				<div class="container">
 {% block footer %}
-					&copy; Alternatieve studentenvereniging <span class="variex">Karpe Noktem</span>
+					&copy; Alternatieve studentenvereniging <span style="font-family: Variex;">Karpe Noktem</span>
 					<small><a id="scrollUp" href="#">Terug naar boven</a></small>
 {% endblock footer %}
 				</div>

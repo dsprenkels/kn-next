@@ -3,11 +3,11 @@
 {% set title = 'Contact' %}
 
 {% block content %}
-<h1>contact</h1>
+{{ parent() }}
 
 <dl>
 	<dt>Alle vragen en verzoeken kun je richten naar onze secretaris:</dt>
-	<dd>{{ email("secretaris@karpenoktem.nl") }}</dd>
+	<dd class="email">{{ email("secretaris@karpenoktem.nl") }}</dd>
 </dl>
 
 {% endblock content %}

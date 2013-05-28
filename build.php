@@ -15,6 +15,9 @@ $FILES = array(
 	),
 	'agenda.html' => array(
 		'php_self' => 'agenda.html'
+	),
+	'geschiedenis.html' => array(
+		'php_self' => 'geschiedenis.html'
 	)
 );
 
@@ -36,7 +39,6 @@ if (count($argv) === 1) {
 if (in_array('help', $argv)) {
 	echo "Usage: php build.php <command> [build_path]\nCommands: help, build, clean";
 } elseif (in_array('build', $argv)) {
-	clean($argv);
 	build($argv, $FILES);
 } elseif (in_array('clean', $argv)) {
 	clean($argv);
@@ -47,9 +49,8 @@ function build($argv, $FILES) {
 	// start build
 	$build_i = array_search('build', $argv);
 	$build_dir = array_key_exists($build_i+1, $argv) ? $argv[$build_i+1] : DEFAULT_BUILD_DIR;
-	echo 'cp -r ' . ASSETS_DIR . ' ' . $build_dir . "\n";
-	system('cp -r ' . ASSETS_DIR . ' ' . $build_dir);
-	echo "building... ";
+	echo 'cp -uvr ' . ASSETS_DIR . ' ' . $build_dir . "\n";
+	system('cp -uvr ' . ASSETS_DIR . ' ' . $build_dir);
 
 	// build new Twig Environment
 	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
@@ -70,6 +71,12 @@ function build($argv, $FILES) {
 	$twig->addFunction($email_function);
 
 	foreach ($FILES as $filename => $context) {
+		$modsrc = filemtime(TEMPLATES_DIR . basename($filename, '.html') . '.twig');
+		$moddest = filemtime($build_dir . '/' . $filename);
+		if ($moddest && $moddest > $modsrc) {
+			continue;
+		}
+		echo "built $filename\n";
 		$html = $twig->render(basename($filename, '.html') . '.twig', $context);
 		file_put_contents($build_dir . '/' . $filename, $html);
 	}
