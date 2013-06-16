@@ -49,8 +49,16 @@ function build($argv, $FILES) {
 	// start build
 	$build_i = array_search('build', $argv);
 	$build_dir = array_key_exists($build_i+1, $argv) ? $argv[$build_i+1] : DEFAULT_BUILD_DIR;
-	echo 'cp -uvr ' . ASSETS_DIR . ' ' . $build_dir . "\n";
-	system('cp -uvr ' . ASSETS_DIR . ' ' . $build_dir);
+	if(!is_dir($build_dir)) {
+		mkdir($build_dir, 0755, true);
+	}
+	if(php_uname('s') == 'FreeBSD') {
+		echo 'cp -vr ' . ASSETS_DIR . '/* ' . $build_dir . "\n";
+		system('cp -vr ' . ASSETS_DIR . '/* ' . $build_dir);
+	} else {
+		echo 'cp -uvr ' . ASSETS_DIR . ' ' . $build_dir . "\n";
+		system('cp -uvr ' . ASSETS_DIR . ' ' . $build_dir);
+	}
 
 	// build new Twig Environment
 	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
@@ -72,7 +80,11 @@ function build($argv, $FILES) {
 
 	foreach ($FILES as $filename => $context) {
 		$modsrc = filemtime(TEMPLATES_DIR . basename($filename, '.html') . '.twig');
-		$moddest = filemtime($build_dir . '/' . $filename);
+		if(file_exists($build_dir . '/' . $filename)) {
+			$moddest = filemtime($build_dir . '/' . $filename);
+		} else {
+			$moddest = -1;
+		}
 		if ($moddest && $moddest > $modsrc) {
 			continue;
 		}
