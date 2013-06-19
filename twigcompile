@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+	// define constants
+	define('TEMPLATES_DIR', 'templates/');
+
+	// include TWIG
+	require_once("vendor/autoload.php");
+
+	// default to build when argv is empty
+	if ($_SERVER['argc'] != 2) {
+		print('Usage: '. $_SERVER['argv'][0] ." <file>\n");
+		exit;
+	}
+
+	$fn = $_SERVER['argv'][1];
+
+	// build new Twig Environment
+	$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
+		'auto_reload' => true,
+		'strict_variables' => true,
+		'autoescape' => false,
+	));
+
+	// add a rot13 filter for email
+	$rot13_filter = new Twig_SimpleFilter('rot13', 'str_rot13');
+	$twig->addFilter($rot13_filter);
+
+	// add email obscurify function
+	$email_function = new Twig_SimpleFunction('email', function ($addr) {
+    	return '<script type="text/javascript">document.write("' . str_rot13($addr) . '".rot13())</script>
+<noscript>(e-mailadres verborgen)</noscript>'; 
+	});
+	$twig->addFunction($email_function);
+
+	$context = array('php_self' => $fn .'.html');
+
+	$html = $twig->render($fn .'.twig', $context);
+	if(!file_exists('build')) {
+		mkdir('build', 0755);
+	}
+	file_put_contents('build/'. $fn .'.html', $html);
+
+?>
