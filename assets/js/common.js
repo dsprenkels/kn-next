@@ -1,34 +1,92 @@
+var headerHeight = 400;
+var collapsedHeaderHeight = 70;
+var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
+
 // Menubar half-fixed
 if (! $.browser.mobile) {
-        $(window).scroll(function(e) {
-            var pos = 400-70;
-            if($(window).scrollTop() > pos) {
-                $('#header').css({
-                    position: 'fixed',
-                    width: '100%',
-                    top: -pos
-                });
-            } else {
-                $('#header').css({
-                    position: 'static',
-                    top: pos
-                });
-            }
-        });
+	$(window).scroll(function(e) {
+		if($.cookie('collapseHeader') != 'y') {
+			if($(window).scrollTop() > headerFixedThreshold) {
+				$('#header').css({
+					position: 'fixed',
+					width: '100%',
+					top: -headerFixedThreshold
+				});
+			} else {
+				$('#header').css({
+					position: 'static',
+					top: headerFixedThreshold
+				});
+			}
+		} else {
+			$('#header').css({
+				position: 'fixed',
+				top: 0
+			});
+		}
+	});
 }
 
-// ScrollUp animation
 $(document).ready( function() {
+    // ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile) {
-			sTop = 400-70;
+		if(!$.browser.mobile && $.cookie('collapseHeader') != 'y') {
+			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
 		event.preventDefault();
 		return false;
 	});
+
+	// read menu state collapse state from cookie
+	if($.cookie('collapseHeader') == 'y') {
+        $('#header').css({
+			position: 'fixed',
+			height: collapsedHeaderHeight
+        });
+		$('#content').css({
+			top: collapsedHeaderHeight
+		});
+	}
 });
+
+function collapseHeader(img) {
+	if($.cookie('collapseHeader') == 'y') {
+		$.cookie('collapseHeader', 'n');
+		img.src = 'img/up.png';
+
+		$('#content').css({
+			top: headerHeight
+		});
+
+		$('#header').css({
+			height: headerHeight
+		});
+
+		if($(window).scrollTop() > pos) {
+			$('#header').css({
+				position: 'fixed',
+				width: '100%',
+				top: -headerFixedThreshold
+			});
+		} else {
+			$('#header').css({
+				position: 'static',
+				top: headerFixedThreshold
+			});
+		}
+	} else {
+		$.cookie('collapseHeader', 'y');
+		img.src = 'img/down.png';
+        $('#header').css({
+			height: collapsedHeaderHeight
+        });
+		$('#content').css({
+			top: collapsedHeaderHeight
+		});
+	}
+}
 
 // Implement rot13 for email obscurification
 javascript:String.prototype.rot13 = function(s)

@@ -3,7 +3,17 @@ TEMPLATES=templates
 ASSET=assets
 ASSETDIRS=$(shell find assets \-type d \-mindepth 1 | sed "s/assets/build/")
 BUILDASSETS=$(shell find assets \-type f | sed "s/assets/build/")
-PAGES=$(BUILD)/index.html $(BUILD)/agenda.html $(BUILD)/geschiedenis.html $(BUILD)/lidworden.html $(BUILD)/contact.html
+PAGES=$(BUILD)/index.html \
+	  $(BUILD)/agenda.html \
+      $(BUILD)/over.html \
+	  $(BUILD)/geschiedenis.html \
+	  $(BUILD)/activiteiten.html \
+	  $(BUILD)/bestuur.html \
+	  $(BUILD)/aktanokturna.html \
+	  $(BUILD)/zusjes.html \
+	  $(BUILD)/sponsoren.html \
+	  $(BUILD)/lidworden.html \
+	  $(BUILD)/contact.html
 
 all: build assets
 

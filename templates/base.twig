@@ -10,6 +10,7 @@
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>{% if title is defined and title %}{{ title }} - {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
@@ -18,11 +19,12 @@
 		<div id="header">
 			<div class="container">
 {% from 'macros.twig' import header_link as header_link %}
-				<div id="logo">{{ header_link('.', '<img src="img/logo.png" alt="Karpe Noktem" width="310px">', php_self == 'index.html') }}</div>
+				<div id="logo"><img id="collapser" src="img/up.png" onclick="collapseHeader(this);" /> {{ header_link('.', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">', php_self == 'index.html') }}</div>
 				<div id="navigator" class="container">
 					<ul>
 						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
-						<li>{{ header_link('geschiedenis.html', 'geschiedenis', php_self == 'geschiedenis.html') }}</li>
+						<li>{{ header_link('over.html', 'over', php_self == 'over.html') }}</li>
+						<li>{{ header_link('https://www.karpenoktem.nl/fotos', 'foto\'s', false) }}</li>
 						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
 						<li>{{ header_link('contact.html', 'contact', php_self == 'contact.html') }}</li>
 					</ul>
@@ -32,6 +34,17 @@
 		<div id="content">
 			<div class="container">
 {% block content %}
+{% block overMenu %}
+<div id="overMenu">
+	<a href="over.html">Over Karpe Noktem</a>
+	<a href="geschiedenis.html">Geschiedenis</a>
+	<a href="activiteiten.html">Activiteiten</a>
+	<a href="bestuur.html">Bestuur</a>
+	<a href="aktanokturna.html">Akta Nokturna</a>
+	<a href="zusjes.html">Zusjes</a>
+	<a href="sponsoren.html">Sponsoren</a>
+</div>
+{% endblock overMenu %}
 {% if title is defined and title %}
 	<h1>{{ title|lower }}</h1>
 {% endif %}

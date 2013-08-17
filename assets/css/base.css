@@ -1,7 +1,7 @@
 /* body */
 body {
 	margin: 0;
-	background-color: #f0f0f0;
+	background-color: #000;
 	color: #102020;
 	line-height: 1.6em;
 	font-family: serif;
@@ -69,6 +69,11 @@ a:hover, a:focus {
 	left: 20px;
 }
 
+#header #logo #collapser {
+	position: absolute;
+	left: -35px;
+}
+
 /* navigator */
 #navigator {
 	position: absolute;
@@ -78,14 +83,14 @@ a:hover, a:focus {
 	font-variant: small-caps;
 	right: 10px;
 	bottom: 0px;
+	background-color: rgba(0, 0, 0, 0.75);
 }
 #navigator ul {
 	list-style: none;
-	background-color: rgba(0, 0, 0, 0.75);
 	margin: 0;
 }
 #navigator ul, #navigator a {
-	padding: 8px 0.5em;
+	padding: 8px 0.4em;
 }
 #navigator li {
 	display: inline;
@@ -105,6 +110,10 @@ a:hover, a:focus {
 #navigator a:active {
 	color: #f0f0f0;
 	text-decoration: underline;
+}
+#navigator a.active {
+	color: #f0f0f0;
+	font-weight: bold;
 }
 @media screen and (min-width: 800px) {
 	#navigator {
@@ -131,6 +140,8 @@ a:hover, a:focus {
 	position: absolute;
 	top: 400px;
 	width: 100%;
+	min-height: 300px;
+	background-color: #f0f0f0;
 	background-image: url('../img/uiltje.png');
 	background-repeat: no-repeat;
 	background-position: 100% 0%;
@@ -184,4 +195,22 @@ a:hover, a:focus {
 }
 .email {
 	font-family: monospace;
+}
+
+/* overmenu */
+
+#overMenu {
+	text-align: right;
+}
+
+#overMenu a {
+	font-variant: small-caps;
+	font-family: sans-serif;
+	text-transform: lowercase;
+	padding: 0 0.4em;
+	text-decoration: underline;
+}
+
+#overMenu a:hover {
+	text-decoration: none;
 }
