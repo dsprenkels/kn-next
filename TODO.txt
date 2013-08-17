@@ -1,0 +1,26 @@
+TODO:
+
+Design finaliseren
+- Meerdere foto's
+- testen in IE6/7/8/9/10; FF; Chrome, Safari
+- login unit voor leden
+
+Landing page
+- Design maken/recapituleren
+- fotocarrousel
+
+Nifty scripting
+- header inklapbaar maken (setting in cookie)
+- uiltje vastzetten onder menu?
+
+Overig
+- (hoofd)menustructuur bepalen
+- infopagina's ontwerpen
+- Agenda dynamisch maken
+- favicon
+- overige pagina's maken
+- content management?
+- lid worden-formulier
+- design ledenportal
+- mobile devices
+- fotoboek
