@@ -3,6 +3,7 @@
 
 	// define constants
 	define('TEMPLATES_DIR', 'templates/');
+	define('SLIDESHOW_DIR', 'slideshow/');
 
 	// include TWIG
 	require_once("vendor/autoload.php");
@@ -32,6 +33,19 @@
 <noscript>(e-mailadres verborgen)</noscript>'; 
 	});
 	$twig->addFunction($email_function);
+
+	// add slideshow function
+	$get_slideshow_files_function = new Twig_SimpleFunction('get_slideshow_files', function () {
+		$files = scandir(SLIDESHOW_DIR);
+		$result = array();
+		foreach($files as $file) {
+			if( is_file(SLIDESHOW_DIR . $file) ) {
+				array_push($result, $file);
+			}
+		}
+		return $result;
+	});
+	$twig->addFunction($get_slideshow_files_function);
 
 	$context = array('php_self' => $fn .'.html');
 
