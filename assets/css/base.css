@@ -193,6 +193,7 @@ a:hover, a:focus {
     font-family: Variex; 
     src: url("Variex.ttf");
 }
+
 .email {
 	font-family: monospace;
 }
@@ -213,4 +214,11 @@ a:hover, a:focus {
 
 #overMenu a:hover {
 	text-decoration: none;
+}
+
+/* we willen alle tekst input-veldjes wat cleaner hebben */
+input:not([type=submit]):not([type=file]) {
+	border: solid 1px #b0b0b0;
+	padding: 2px;
+	color: #102020;
 }

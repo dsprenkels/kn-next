@@ -1,7 +1,7 @@
 BUILD=build
 TEMPLATES=templates
 ASSET=assets
-ASSETDIRS=$(shell find assets \-type d \-mindepth 1 | sed "s/assets/build/")
+ASSETDIRS=$(shell find assets \-mindepth 1 \-type d | sed "s/assets/build/")
 BUILDASSETS=$(shell find assets \-type f | sed "s/assets/build/")
 PAGES=$(BUILD)/index.html \
 	  $(BUILD)/agenda.html \
