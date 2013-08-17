@@ -17,6 +17,19 @@ if (! $.browser.mobile) {
         });
 }
 
+// ScrollUp animation
+$(document).ready( function() {
+	$("#scrollUp").click(function(event) {
+		var sTop = 0;
+		if(!$.browser.mobile) {
+			sTop = 400-70;
+		}
+		$('html, body').animate({scrollTop: sTop}, 300);
+		event.preventDefault();
+		return false;
+	});
+});
+
 // Implement rot13 for email obscurification
 javascript:String.prototype.rot13 = function(s)
 {

@@ -2,8 +2,192 @@
 
 {% set title = 'Agenda' %}
 
+{% block head %}
+{{ parent() }}
+    <link rel="stylesheet" type="text/css" href="css/agenda.css" />
+{% endblock head %}
+
 {% block content %}
 {{ parent() }}
 
-<pre>TODO</pre>
+<div>
+	<a href="http://www.google.com/calendar/embed?src=vssp95jliss0lpr768ec9spbd8%40group.calendar.google.com&amp;ctz=Europe/Paris" target="_blank">Ook op Google Calendar</a>.
+	Ben je geen lid, maar wil je wel op de hoogte blijven van onze activiteiten?
+	Zet jezelf op de geïnteresseerden-e-maillijst: <form method="post" action="https://karpenoktem.nl/mailman/subscribe/geinteresseerden" style="display: inline;"><input name="email" type="text" placeholder="jouw@email.com" /><input type="submit" value="voeg toe" /></form>
+</div>
+
+<div id="agenda">
+<ul id="fullagenda">
+	<li class="monthSeparator">Juni</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr 14
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Zusjesweekend</span> <span class="datelong">vrijdag 14 juni&mdash;16 juni</span></div>
+				<div class="description preview">
+					We gaan samen met onze zusjes kamperen op een boerderij in Teteringen! Er zijn slaapplaatsen en er is ruimte voor tenten, maar er zijn maar alleen nog maar reserveplaatsen (met hoge waarschijnlijkheid dat je toch nog mee kunt). Meld je <a href="https://www.karpenoktem.nl/activiteit/bestuur-zusjeskamp2013">hier</a> aan.<br/><br/>Locatie: Teteringen<br/>Kosten: €30,-
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				ma 17
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Borrel</span></div>
+				<div class="description preview">
+					Het is weer tijd voor de wekelijkse maadagavondborrel!<br/><br/>Vanaf: 21u00<br/>Locatie: Kelder, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				di 18
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Verkiezings-ALV</span></div>
+				<div class="description preview">
+					Er zal worden gestemd over de bestuursvoordracht voor jaar 10. Zij zullen hun beleidsplan en begroting presenteren.<br/><br/>Vanaf: 20u00<br/>Locatie: Grote zaal, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr 21
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Avondeten (budget)</span></div>
+				<div class="description preview">
+					Het menu blijft nog even een verrassing, maar je kunt je wel alvast <a href="https://www.karpenoktem.nl/activiteit/avondeten21-06-2013">aanmelden</a>.<br/><br/>Welkom vanaf: 18u30, eten: 19u00<br/>Locatie: Borrelruimte, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a><br/>Kosten: €2,-<br/>Georganiseerd door: CHEF
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr 21
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Drankspellenavond</span></div>
+				<div class="description preview">
+					Details volgen.<br/><br/>Vanaf: 21u00<br/>Locatie: Borrelruimte, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a><br/>Kosten: €4,-<br/>Georganiseerd door: Spelletjescommissie
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				ma 24
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Borrel</span></div>
+				<div class="description preview">
+					Een avond vol met muziek, mensen en drank!<br/><br/>Vanaf: 21u00<br/>Locatie: Kelder, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr 28
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Avondeten (deluxe)</span></div>
+				<div class="description preview">
+					Het menu blijft nog even een verrassing, maar je kunt je wel alvast <a href="https://www.karpenoktem.nl/activiteit/avondeten28-06-2013">aanmelden</a>.<br/><br/>Welkom vanaf: 18u30, eten: 19u00<br/>Locatie: Borrelruimte, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a><br/>Kosten: €4,-<br/>Georganiseerd door: CHEF
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="monthSeparator">Juli</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				ma 1
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Borrel</span></div>
+				<div class="description preview">
+					Een avond vol met drank, muziek en mensen! En om middernacht kun je voor 50ct een lekkere snack kopen.<br/><br/>Vanaf: 21u00<br/>Locatie: Kelder, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				do 4
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Gemaskerd eindgala</span></div>
+				<div class="description preview">
+					Het collegejaar zit er alweer bijna op. Dat gaan we natuurlijk vieren met een knallend eindgala. Dus zet je mooiste masker op en feest mee! Meld je <a href="https://www.karpenoktem.nl/activiteit/bestuur-eindgala2013">hier</a> aan en geef het even via het opmerkingenveld door als je een introducé meeneemt. Je mag één introducé meenemen.<br/><br/>Vanaf: 21u30 (tot 2u00)<br/>Locatie: Sfeerhuys de Looimolen<br/>Kosten: €18,50, introducé: €22,50<br/>Georganiseerd door: bestuur en galagroep
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr<br/>5
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Avondeten (budget)</span></div>
+				<div class="description preview">
+					Het menu blijft nog even een verrassing, maar je kunt je wel alvast <a href="https://www.karpenoktem.nl/activiteit/avondeten05-07-2013">aanmelden</a>.
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+	<li class="item2" onclick="$(this).find('.description').toggleClass('preview');">
+		<div class="item2_wrapper">
+			<div class="date">
+				vr<br/>5
+			</div>
+			<div class="item2_content">
+				<div class="titlebar"><span class="title">Spelletjesavond</span></div>
+				<div class="description preview">
+					Details volgen, maar er zijn in ieder geval spelletjes!<br/><br/>Vanaf: 20u00<br/>Locatie: Borrelruimte, <a href='https://www.karpenoktem.nl/route'>Villa van Schaeck</a><br/>Georganiseerd door: Spelletjescommissie
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+	</li>
+
+</ul>
+</div>
+
 {% endblock content %}
