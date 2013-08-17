@@ -56,8 +56,8 @@ function build($argv, $FILES) {
 		echo 'cp -vr ' . ASSETS_DIR . '/* ' . $build_dir . "\n";
 		system('cp -vr ' . ASSETS_DIR . '/* ' . $build_dir);
 	} else {
-		echo 'cp -uvr ' . ASSETS_DIR . ' ' . $build_dir . "\n";
-		system('cp -uvr ' . ASSETS_DIR . ' ' . $build_dir);
+		echo 'cp -uvr ' . ASSETS_DIR . '/* ' . $build_dir . "\n";
+		system('cp -uvr ' . ASSETS_DIR . '/* ' . $build_dir);
 	}
 
 	// build new Twig Environment
