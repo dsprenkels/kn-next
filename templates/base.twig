@@ -7,10 +7,12 @@
 	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
 	<meta name="robots" content="INDEX, FOLLOW">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>{% if title is defined and title %}{{ title }} - {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
@@ -23,10 +25,11 @@
 				<div id="navigator" class="container">
 					<ul>
 						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
-						<li>{{ header_link('over.html', 'over', php_self == 'over.html') }}</li>
-						<li>{{ header_link('https://www.karpenoktem.nl/fotos', 'foto\'s', false) }}</li>
+						<li>{{ header_link('over.html', 'over', php_self in ['over.html', 'geschiedenis.html', 'activiteiten.html', 'bestuur.html', 'aktanokturna.html', 'zusjes.html', 'sponsoren.html']) }}</li>
+						<li>{{ header_link('https://www.karpenoktem.nl/fotos', 'foto\'s', false, ' target="_blank"') }}</li>
 						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
 						<li>{{ header_link('contact.html', 'contact', php_self == 'contact.html') }}</li>
+						<li><a href="javascript:void(null);" onclick="showLoginWindow();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></li>
 					</ul>
 				</div>
 			</div>
@@ -36,13 +39,13 @@
 {% block content %}
 {% block overMenu %}
 <div id="overMenu">
-	<a href="over.html">Over Karpe Noktem</a>
-	<a href="geschiedenis.html">Geschiedenis</a>
-	<a href="activiteiten.html">Activiteiten</a>
-	<a href="bestuur.html">Bestuur</a>
-	<a href="aktanokturna.html">Akta Nokturna</a>
-	<a href="zusjes.html">Zusjes</a>
-	<a href="sponsoren.html">Sponsoren</a>
+	{{ header_link('over.html', 'over karpe noktem', php_self == 'over.html') }}
+	{{ header_link('geschiedenis.html', 'geschiedenis', php_self == 'geschiedenis.html') }}
+	{{ header_link('activiteiten.html', 'activiteiten', php_self == 'activiteiten.html') }}
+	{{ header_link('bestuur.html', 'bestuur', php_self == 'bestuur.html') }}
+	{{ header_link('aktanokturna.html', 'aktanokturna', php_self == 'aktanokturna.html') }}
+	{{ header_link('zusjes.html', 'zusjes', php_self == 'zusjes.html') }}
+	{{ header_link('sponsoren.html', 'sponsoren', php_self == 'sponsoren.html') }}
 </div>
 {% endblock overMenu %}
 {% if title is defined and title %}
@@ -59,6 +62,27 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="loginWindow" style="display: none;">
+		<p>
+			Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <a href="mailto:webcie@karpenoktem.nl">webcie@kerpenoktem.nl</a>.
+		</p>
+		<form method="POST" action="https://www.karpenoktem.nl/accounts/login/">
+			<table>
+				<tr>
+					<td>Gebruikersnaam</td>
+					<td><input type="text" name="username" /></td>
+				</tr>
+				<tr>
+					<td>Wachtwoord</td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Inloggen" /></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

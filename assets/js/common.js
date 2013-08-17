@@ -88,6 +88,22 @@ function collapseHeader(img) {
 	}
 }
 
+function showLoginWindow() {
+	$("#loginWindow").dialog({
+		draggable: false,
+		height: 325,
+		width: 325,
+		modal: true,
+		position: {
+			my: 'right top',
+			at: 'right bottom',
+			of: $('#navigator')
+		},
+		resizable: false,
+		title: 'Inloggen voor leden'
+	});
+}
+
 // Implement rot13 for email obscurification
 javascript:String.prototype.rot13 = function(s)
 {
