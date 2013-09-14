@@ -1,9 +1,15 @@
-{% macro header_link(href, title, active, extra) %}
+{% macro header_link(self, action, title, active, extra) %}
 {% spaceless %}
+	{% if not title is defined %}
+		{% set title = action %}
+	{% endif %}
+	{% if not active is defined %}
+		{% set active = self == action %}
+	{% endif %}
 	{% if active %}
-		<a href="{{ href|raw }}" class="active"{{ extra|raw }}>{{ title|raw }}</a>
+		<a href="index.php?action={{ action }}" class="active"{{ extra|raw }}>{{ title|raw }}</a>
 	{% else %}
-		<a href="{{ href|raw }}"{{ extra|raw }}>{{ title|raw }}</a>
+		<a href="index.php?action={{ action }}"{{ extra|raw }}>{{ title|raw }}</a>
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}
