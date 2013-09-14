@@ -1,0 +1,31 @@
+{% extends 'base.twig' %}
+
+{% set title = 'Admin' %}
+
+{% block overMenu %}
+{% endblock overMenu %}
+
+{% block content %}
+{{ parent() }}
+
+<div>
+	<h2>slideshow</h2>
+	<form action="{{ php_self }}?action=slideshow_delete" method="post">
+		<ul style="list-style-type: none;">
+		{% for image in slideshow_images %}
+			<li>
+				<input id="slideshow_{{ image }}" name="slideshow_{{ image }}" type="checkbox" value="{{ image }}" />
+				<label for="slideshow_{{ image }}">{{ image }}<label>
+			</li>
+		{% endfor %}
+		</ul>
+		<input type="submit" name="submit" value="verwijder geselecteerde">
+	</form>
+	<form action="{{ php_self }}?action=slideshow_add" method="post" enctype="multipart/form-data">
+		<input type="file" name="new_slideshow_image">
+		<input type="submit" name="submit" value="toevoegen">
+	</form>
+</div>
+<div style="clear: both;"></div>
+
+{% endblock content %}

@@ -154,7 +154,7 @@ a:hover, a:focus {
 }
 
 /* content */
-#content h1 {
+#content h1, #content h2 {
 	color: #404040;
 	font-variant: small-caps;
 	font-family: sans-serif;
@@ -213,6 +213,10 @@ a:hover, a:focus {
 }
 
 #overMenu a:hover {
+	text-decoration: none;
+}
+#overMenu a.active {
+	font-weight: bold;
 	text-decoration: none;
 }
 

@@ -3,24 +3,24 @@ TODO:
 Design finaliseren
 - Meerdere foto's
 - testen in IE6/7/8/9/10; FF; Chrome, Safari
-- login unit voor leden
+x- login unit voor leden
 
 Landing page
-- Design maken/recapituleren
-- fotocarrousel
+x- Design maken/recapituleren
+x- fotocarrousel
 
 Nifty scripting
-- header inklapbaar maken (setting in cookie)
+x- header inklapbaar maken (setting in cookie)
 - uiltje vastzetten onder menu?
 
 Overig
-- (hoofd)menustructuur bepalen
-- infopagina's ontwerpen
+x- (hoofd)menustructuur bepalen
+x- infopagina's ontwerpen
 - Agenda dynamisch maken
 - favicon
-- overige pagina's maken
+x- overige pagina's maken
 - content management?
-- lid worden-formulier
+x- lid worden-formulier
 - design ledenportal
 - mobile devices
 - fotoboek

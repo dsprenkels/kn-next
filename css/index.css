@@ -42,7 +42,7 @@
 
 /* photoslider properties */
 .nivoSlider {
-	z-index: -1;
+	z-index: 0;
 }
 .nivoSlider img {
 	border-radius: 4px;
