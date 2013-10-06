@@ -1,10 +1,4 @@
 kn-next
 =======
 
-One can build everything by executing:
-
-`$ php build.php`
-
-This script generates the website into the `build`-directory.
-
-While debugging I use a `watch` command to build the website continuously.
+Clone the repository into a PHP-enabled webserver and it'll work.

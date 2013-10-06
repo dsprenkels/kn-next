@@ -19,16 +19,16 @@
 <body>
 	<div id="pageWrapper">
 		<div id="header">
+			{% from 'macros.twig' import header_link as header_link %}
 			<div class="container">
-{% from 'macros.twig' import header_link as header_link %}
-				<div id="logo"><img id="collapser" src="img/up.png" onclick="collapseHeader(this);" /> {{ header_link('.', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">', php_self == 'index.html') }}</div>
+				<div id="logo"><img id="collapser" src="img/up.png" onclick="collapseHeader(this);" /> {{ header_link(action, 'index', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">') }}</div>
 				<div id="navigator" class="container">
 					<ul>
-						<li>{{ header_link('agenda.html', 'agenda', php_self == 'agenda.html') }}</li>
-						<li>{{ header_link('over.html', 'over', php_self in ['over.html', 'geschiedenis.html', 'activiteiten.html', 'bestuur.html', 'aktanokturna.html', 'zusjes.html', 'sponsoren.html']) }}</li>
-						<li>{{ header_link('https://www.karpenoktem.nl/fotos', 'foto\'s', false, ' target="_blank"') }}</li>
-						<li>{{ header_link('lidworden.html', 'lid worden', php_self == 'lidworden.html') }}</li>
-						<li>{{ header_link('contact.html', 'contact', php_self == 'contact.html') }}</li>
+						<li>{{ header_link(action, 'agenda', 'agenda') }}</li>
+						<li>{{ header_link(action, 'over', 'over') }}</li>
+						<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
+						<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
+						<li>{{ header_link(action, 'contact', 'contact') }}</li>
 						<li><a href="javascript:void(null);" onclick="showLoginWindow();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></li>
 					</ul>
 				</div>
@@ -65,7 +65,7 @@
 	</div>
 	<div id="loginWindow" style="display: none;">
 		<p>
-			Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <a href="mailto:webcie@karpenoktem.nl">webcie@karpenoktem.nl</a>.
+			Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <span class="email">{{ email('webcie@karpenoktem.nl') }}</span>.
 		</p>
 		<form method="POST" action="https://www.karpenoktem.nl/accounts/login/">
 			<table>

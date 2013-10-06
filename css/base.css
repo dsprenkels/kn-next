@@ -154,7 +154,7 @@ a:hover, a:focus {
 }
 
 /* content */
-#content h1 {
+#content h1, #content h2 {
 	color: #404040;
 	font-variant: small-caps;
 	font-family: sans-serif;
