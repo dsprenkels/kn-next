@@ -40,8 +40,26 @@ $twig->addFunction($get_slideshow_images_function);
 
 $action = trim($_GET['action']);
 switch ($action) {
+	case 'over':
+		$template = 'over.twig';
+		break;
 	case 'geschiedenis':
 		$template = 'geschiedenis.twig';
+		break;
+	case 'activiteiten':
+		$template = 'activiteiten.twig';
+		break;
+	case 'bestuur':
+		$template = 'bestuur.twig';
+		break;
+	case 'aktanokturna':
+		$template = 'aktanokturna.twig';
+		break;
+	case 'zusjes':
+		$template = 'zusjes.twig';
+		break;
+	case 'sponsoren':
+		$template = 'sponsoren.twig';
 		break;
 	case 'agenda':
 		$template = 'agenda.twig';

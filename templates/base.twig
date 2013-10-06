@@ -39,13 +39,13 @@
 {% block content %}
 {% block overMenu %}
 <div id="overMenu">
-	{{ header_link('over.html', 'over karpe noktem', php_self == 'over.html') }}
-	{{ header_link('geschiedenis.html', 'geschiedenis', php_self == 'geschiedenis.html') }}
-	{{ header_link('activiteiten.html', 'activiteiten', php_self == 'activiteiten.html') }}
-	{{ header_link('bestuur.html', 'bestuur', php_self == 'bestuur.html') }}
-	{{ header_link('aktanokturna.html', 'aktanokturna', php_self == 'aktanokturna.html') }}
-	{{ header_link('zusjes.html', 'zusjes', php_self == 'zusjes.html') }}
-	{{ header_link('sponsoren.html', 'sponsoren', php_self == 'sponsoren.html') }}
+	{{ header_link(action, 'over', 'over karpe noktem', action == 'over') }}
+	{{ header_link(action, 'geschiedenis', 'geschiedenis', action == 'geschiedenis') }}
+	{{ header_link(action, 'activiteiten', 'activiteiten', action == 'activiteiten') }}
+	{{ header_link(action, 'bestuur', 'bestuur', action == 'bestuur') }}
+	{{ header_link(action, 'aktanokturna', 'akta nokturna', action == 'aktanokturna') }}
+	{{ header_link(action, 'zusjes', 'zusjes', action == 'zusjes') }}
+	{{ header_link(action, 'sponsoren', 'sponsoren', action == 'sponsoren') }}
 </div>
 {% endblock overMenu %}
 {% if title is defined and title %}
