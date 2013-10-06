@@ -226,3 +226,7 @@ input:not([type=submit]):not([type=file]) {
 	padding: 2px;
 	color: #102020;
 }
+
+#loginWindow a {
+	color: #ddd;
+}
