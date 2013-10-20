@@ -37,6 +37,7 @@ $get_slideshow_images_function = new Twig_SimpleFunction('get_slideshow_images',
 });
 $twig->addFunction($get_slideshow_images_function);
 
+$context = array();
 
 $action = trim($_GET['action']);
 switch ($action) {
@@ -55,6 +56,26 @@ switch ($action) {
 		break;
 	case 'aktanokturna':
 		$template = 'aktanokturna.twig';
+		$context['aktas'] = array();
+		foreach(glob('aktas/Jaargang*') as $jaargang) {
+			preg_match('/Jaargang ([0-9]+)/', $jaargang, $m);
+			$context['aktas'][(int)$m[1]] = array(
+				'name' => 'Jaargang '. $m[1],
+				'aktas' => array(),
+			);
+			foreach(glob($jaargang .'/*\.pdf') as $akta) {
+				preg_match('|/([^/]*)\.pdf|', $akta, $m2);
+				$context['aktas'][$m[1]]['aktas'][] = array(
+					'title' => $m2[1],
+					'location' => $akta,
+				);
+			}
+			if(count($context['aktas'][$m[1]]['aktas']) == 0) {
+				unset($context['aktas'][$m[1]]);
+			}
+		}
+		ksort($context['aktas']);
+		$context['aktas'] = array_reverse($context['aktas']);
 		break;
 	case 'zusjes':
 		$template = 'zusjes.twig';
@@ -92,9 +113,7 @@ switch ($action) {
 		break;
 }
 
-$context = array(
-	'action' => $action
-);
+$context['action'] = $action;
 $html = $twig->render($template, $context);
 
 echo $html;
