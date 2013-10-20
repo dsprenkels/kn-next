@@ -75,8 +75,9 @@ def print_events(events):
         # Process the events
         processed_events = []
         # Loop over the *sorted* list
-        for title, content, start_time, end_time in sorted(events, key=lambda e: e[2]):
-            short_date = (start_time.strftime('%a'), str(start_time.day))
+        for title, content, start_date, end_date in sorted(events, key=lambda e: e[2]):
+            short_date = (start_date.strftime('%a'), str(start_date.day))
+            month = start_date.strftime('%B')
             content = "" if content is None else content.strip()
             content = content.replace("\n", "<br/>")
             content = erepl.sub(erepl_replace, content)
@@ -84,17 +85,17 @@ def print_events(events):
                 '/maps/?q=Villa van Schaeck, Van Schaeck Mathonsingel, '
                 'Nijmegen-Centrum, Nijmegen, The Netherlands">\\1</a>',
                 content)
-            if (end_time - start_time) < timedelta(1, 0, 0):
-                start_time = start_time.strftime('%A %d %B')
-                end_time = None
+            if (end_date - start_date) < timedelta(1, 0, 0):
+                start_date = start_date.strftime('%A %d %B')
+                end_date = None
             else:
-                start_time = (start_time.strftime('%A %%d %B') %
-                        start_time.day)
-                end_time = (end_time.strftime('%%d %B') %
-                        end_time.day)
-            processed_events.append({'title': title, 'content': content,
-                'start_time': start_time, 'end_time': end_time,
-                'short_date': short_date})
+                start_date = (start_date.strftime('%A %%d %B') %
+                        start_date.day)
+                end_date = (end_date.strftime('%A %%d %B') %
+                        end_date.day)
+            processed_events.append({'title': title, 'description': content,
+                'start_date': start_date, 'end_date': end_date,
+                'short_date': short_date, 'month': month})
 
         # dump the events to stdout
         dump(processed_events, sys.stdout)
