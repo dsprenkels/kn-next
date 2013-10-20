@@ -88,7 +88,6 @@ def print_events(events):
                 start_time = start_time.strftime('%A %d %B')
                 end_time = None
             else:
-                print type(start_time.day)
                 start_time = (start_time.strftime('%A %%d %B') %
                         start_time.day)
                 end_time = (end_time.strftime('%%d %B') %
