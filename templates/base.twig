@@ -42,7 +42,7 @@
 	{{ header_link(action, 'over', 'over karpe noktem', action == 'over') }}
 	{{ header_link(action, 'geschiedenis', 'geschiedenis', action == 'geschiedenis') }}
 	{{ header_link(action, 'activiteiten', 'activiteiten', action == 'activiteiten') }}
-	{{ header_link(action, 'bestuur', 'bestuur', action == 'bestuur') }}
+	{{ header_link(action, 'bestuur', 'bestuur', action|slice(0,7) == 'bestuur') }}
 	{{ header_link(action, 'aktanokturna', 'akta nokturna', action == 'aktanokturna') }}
 	{{ header_link(action, 'zusjes', 'zusjes', action == 'zusjes') }}
 	{{ header_link(action, 'sponsoren', 'sponsoren', action == 'sponsoren') }}

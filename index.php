@@ -50,7 +50,8 @@ switch ($action) {
 		$template = 'activiteiten.twig';
 		break;
 	case 'bestuur':
-		$template = 'bestuur.twig';
+		$action = 'bestuur10';
+		$template = 'bestuur/bestuur10.twig';
 		break;
 	case 'aktanokturna':
 		$template = 'aktanokturna.twig';
@@ -71,9 +72,18 @@ switch ($action) {
 		$template = 'contact.twig';
 		break;
 	case 'index':
-	default:
 		$action = 'index';
 		$template = 'index.twig';
+		break;
+	default:
+		if(preg_match('/^bestuur([0-9]+)$/', $action, $m)) {
+			$action = 'bestuur'. $m[1];
+			$template = 'bestuur/bestuur'. $m[1] .'.twig';
+			break;
+		} else {
+			$action = 'index';
+			$template = 'index.twig';
+		}
 		break;
 }
 
