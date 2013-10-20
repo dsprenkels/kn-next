@@ -77,8 +77,13 @@ switch ($action) {
 		break;
 	default:
 		if(preg_match('/^bestuur([0-9]+)$/', $action, $m)) {
-			$action = 'bestuur'. $m[1];
-			$template = 'bestuur/bestuur'. $m[1] .'.twig';
+			if(file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
+				$action = 'bestuur'. $m[1];
+				$template = 'bestuur/bestuur'. $m[1] .'.twig';
+			} else {
+				$action = 'index';
+				$template = 'index.twig';
+			}
 			break;
 		} else {
 			$action = 'index';
