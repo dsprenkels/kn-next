@@ -89,19 +89,34 @@ function collapseHeader(img) {
 }
 
 function showLoginWindow() {
-	$("#loginWindow").dialog({
-		draggable: false,
-		height: 325,
-		width: 325,
-		modal: true,
-		position: {
-			my: 'right top',
-			at: 'right bottom',
-			of: $('#navigator')
-		},
-		resizable: false,
-		title: 'Inloggen voor leden'
-	});
+	var doShowWindow = function () {
+		$("#loginWindow").dialog({
+			draggable: false,
+			height: 325,
+			width: 325,
+			modal: true,
+			position: {
+				my: 'right top',
+				at: 'right bottom',
+				of: $('#navigator')
+			},
+			resizable: false,
+			title: 'Inloggen voor leden'
+		});
+	}
+	// Check if we are on the right hostname, then fetch a cookie with
+	// a CSRF-token if not redirect to the standard login page.
+	// If we have a CSRF-token, show the login window
+	if (!$.browser.mobile && window.location.hostname.match(/(^|\.)(karpenoktem\.(nl|com)|kn\.cx)$/i)) {
+		if (!$.cookie('csrftoken')) {
+			$.get('/accounts/login/', {}, doShowWindow); // XXX dit is nog niet niet getest!
+			return;
+		} else {
+			doShowWindow();
+		}
+	} else {
+		window.location.href = 'https://karpenoktem.nl/accounts/login/';
+	}
 }
 
 // Implement rot13 for email obscurification
