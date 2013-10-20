@@ -210,14 +210,17 @@ a:hover, a:focus {
 	text-transform: lowercase;
 	padding: 0 0.4em;
 	text-decoration: underline;
+	color: #000;
 }
 
 #overMenu a:hover {
 	text-decoration: none;
+	color: #000;
 }
 #overMenu a.active {
 	font-weight: bold;
 	text-decoration: none;
+	color: #000;
 }
 
 /* we willen alle tekst input-veldjes wat cleaner hebben */
