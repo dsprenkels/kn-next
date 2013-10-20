@@ -64,7 +64,7 @@ function collapseHeader(img) {
 			height: headerHeight
 		});
 
-		if($(window).scrollTop() > pos) {
+		if($(window).scrollTop() > headerFixedThreshold) {
 			$('#header').css({
 				position: 'fixed',
 				width: '100%',
