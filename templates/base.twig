@@ -3,13 +3,13 @@
 <head>
 {% block head %}
 	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
 	<meta name="robots" content="INDEX, FOLLOW">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 	<link rel="icon" type="image/png" href="favicon.png">
-	<title>{% if title is defined and title %}{{ title }} - {% endif %}Studentenvereniging Karpe Noktem</title>
+	<title>{% if title is defined and title %}{{ title }} &ndash; {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -29,7 +29,10 @@
 						<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
 						<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
 						<li>{{ header_link(action, 'contact', 'contact') }}</li>
-						<li><a href="javascript:void(null);" onclick="showLoginWindow();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></li>
+						<li>
+						<script type="text/javascript">document.write('<a href="javascript:void(null);" onclick="showLoginWindow();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a>');</script>
+						<noscript><a href="https://karpenoktem.nl/accounts/login/" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></noscript>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -42,7 +45,7 @@
 	{{ header_link(action, 'over', 'over karpe noktem', action == 'over') }}
 	{{ header_link(action, 'geschiedenis', 'geschiedenis', action == 'geschiedenis') }}
 	{{ header_link(action, 'activiteiten', 'activiteiten', action == 'activiteiten') }}
-	{{ header_link(action, 'bestuur', 'bestuur', action == 'bestuur') }}
+	{{ header_link(action, 'bestuur', 'bestuur', action|slice(0,7) == 'bestuur') }}
 	{{ header_link(action, 'aktanokturna', 'akta nokturna', action == 'aktanokturna') }}
 	{{ header_link(action, 'zusjes', 'zusjes', action == 'zusjes') }}
 	{{ header_link(action, 'sponsoren', 'sponsoren', action == 'sponsoren') }}

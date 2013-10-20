@@ -1,6 +1,6 @@
 {% extends 'base.twig' %}
 
-{% set title = 'Bestuur' %}
+{% set title = 'Negende Bestuur' %}
 
 {% block overMenu %}
 {{ parent() }}
@@ -10,7 +10,7 @@
 {{ parent() }}
 
 <p class="imageDisplay">
-	<img src="https://www.karpenoktem.nl/img/bestuur9.jpg" />
+	<img src="/img/bestuur9.jpg" />
         <small>Van links naar rechts: Astrid (secretaris), Annemiek (voorzitter),
 				Loesje (vicevoorzitter), Peter (pandcommissaris) en Carlien
 				(penningmeester)</small>
@@ -34,6 +34,8 @@ Schaeck.</p>
 @karpenoktem.nl, behalve Peter, die is bereikbaar op <script type='text/javascript'>email('nl', 'karpenoktem', 'petervdv');</script><noscript>[X@Y, waar voor Y=karpenoktem.nl en X=petervdv]</noscript>.</p>
 
 <p>&lArr; Het vorige,
-<a href="https://www.karpenoktem.nl/bestuur8">achtste bestuur</a>.</p>
+<a href="?action=bestuur8">achste bestuur</a>;
+het volgende,
+<a href="?action=bestuur10">tiende bestuur</a> &rArr;</p>
 
 {% endblock content %}
