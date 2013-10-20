@@ -5,7 +5,8 @@
 // define constants
 define('TEMPLATES_DIR', 'templates/');
 define('SLIDESHOW_DIR', 'img/slideshow/');
-
+define('AGENDA_JSON_FILE', '/tmp/kn-next_agenda.json');
+define('FETCH_AGENDA_SCRIPT', __DIR__ . '/utils/fetch_agenda.py');
 
 
 // include TWIG
@@ -37,8 +38,10 @@ $get_slideshow_images_function = new Twig_SimpleFunction('get_slideshow_images',
 });
 $twig->addFunction($get_slideshow_images_function);
 
+// create an empty $context, so extra values can be defined
 $context = array();
 
+// do page-specific tasks
 $action = trim($_GET['action']);
 switch ($action) {
 	case 'over':
@@ -85,6 +88,11 @@ switch ($action) {
 		break;
 	case 'agenda':
 		$template = 'agenda.twig';
+		$agenda_json = file_get_contents(AGENDA_JSON_FILE);
+		if (! $agenda_json) {
+			die('ERROR bij het laden van de agenda');
+		}
+		$context['agenda'] = json_decode($agenda_json);
 		break;
 	case 'lidworden':
 		$template = 'lidworden.twig';
