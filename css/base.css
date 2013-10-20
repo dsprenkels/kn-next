@@ -147,8 +147,14 @@ a:hover, a:focus {
 	background-position: 100% 0%;
 	background-attachment: scroll;
 }
+@media screen and (min-width: 800px) {
+	#content {
+		padding-top: 20px;
+	}
+}
 @media screen and (max-width: 800px) {
 	#content {
+		padding-top: 30px;
 		top: 442px;
 	}
 }
