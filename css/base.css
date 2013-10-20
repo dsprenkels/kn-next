@@ -52,7 +52,7 @@ a:hover, a:focus {
 	padding: 0.25em 0;
 	font-size: 14px;
 	box-shadow: 0px -1px 4px #a31e1b;
-	bottom: -35px;
+	bottom: -0px;
 }
 @media screen and (min-width: 800px) {
 	#header {
@@ -136,7 +136,7 @@ a:hover, a:focus {
 /* content */
 #content {
 	margin: 0 auto;
-	padding: 20px 0;
+	padding: 20px 0 40px 0;
 	position: absolute;
 	top: 400px;
 	width: 100%;
