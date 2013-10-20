@@ -14,8 +14,8 @@ if (! $.browser.mobile) {
 				});
 			} else {
 				$('#header').css({
-					position: 'static',
-					top: headerFixedThreshold
+					position: 'absolute',
+					top: 0
 				});
 			}
 		} else {
@@ -72,8 +72,8 @@ function collapseHeader(img) {
 			});
 		} else {
 			$('#header').css({
-				position: 'static',
-				top: headerFixedThreshold
+				position: 'absolute',
+				top: 0
 			});
 		}
 	} else {
