@@ -88,11 +88,6 @@ switch ($action) {
 		break;
 	case 'agenda':
 		$template = 'agenda.twig';
-		$agenda_json = file_get_contents(AGENDA_JSON_FILE);
-		if (! $agenda_json) {
-			die('ERROR bij het laden van de agenda');
-		}
-		$context['agenda'] = json_decode($agenda_json);
 		break;
 	case 'lidworden':
 		$template = 'lidworden.twig';
@@ -122,6 +117,14 @@ switch ($action) {
 }
 
 $context['action'] = $action;
+if($action == 'index' || $action == 'agenda') {
+	$agenda_json = file_get_contents(AGENDA_JSON_FILE);
+	if (! $agenda_json) {
+		die('ERROR bij het laden van de agenda');
+	}
+	$context['agenda'] = json_decode($agenda_json);
+}
+
 $html = $twig->render($template, $context);
 
 echo $html;
