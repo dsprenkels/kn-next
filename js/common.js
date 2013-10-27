@@ -5,29 +5,26 @@ var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
 // Menubar half-fixed
 if (! $.browser.mobile) {
 	$(window).scroll(function(e) {
-		if($.cookie('collapseHeader') != 'y') {
-			if($(window).scrollTop() > headerFixedThreshold) {
-				$('#header').css({
-					position: 'fixed',
-					width: '100%',
-					top: -headerFixedThreshold
-				});
-			} else {
-				$('#header').css({
-					position: 'absolute',
-					top: 0
-				});
-			}
-		} else {
+		if($.cookie('collapseHeader') === 'y') {
 			$('#header').css({
 				position: 'fixed',
+				top: -headerFixedThreshold
+			});
+		} else if($(window).scrollTop() > headerFixedThreshold) {
+			$('#header').css({
+				position: 'fixed',
+				top: -headerFixedThreshold
+			});
+		} else {
+			$('#header').css({
+				position: 'absolute',
 				top: 0
 			});
 		}
 	});
 }
 
-$(document).ready( function() {
+$(document).ready(function() {
     // ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
@@ -40,11 +37,11 @@ $(document).ready( function() {
 	});
 
 	// read menu state collapse state from cookie
-	if($.cookie('collapseHeader') == 'y') {
+	if($.cookie('collapseHeader') === 'y') {
         $('#header').css({
 			position: 'fixed',
-			height: collapsedHeaderHeight
-        });
+			top: -headerFixedThreshold
+		});
 		$('#content').css({
 			top: collapsedHeaderHeight
 		});
@@ -52,7 +49,7 @@ $(document).ready( function() {
 });
 
 function collapseHeader(img) {
-	if($.cookie('collapseHeader') == 'y') {
+	if($.cookie('collapseHeader') === 'y') {
 		$.cookie('collapseHeader', 'n');
 		img.src = 'img/up.png';
 
@@ -67,7 +64,6 @@ function collapseHeader(img) {
 		if($(window).scrollTop() > headerFixedThreshold) {
 			$('#header').css({
 				position: 'fixed',
-				width: '100%',
 				top: -headerFixedThreshold
 			});
 		} else {
@@ -80,8 +76,9 @@ function collapseHeader(img) {
 		$.cookie('collapseHeader', 'y');
 		img.src = 'img/down.png';
         $('#header').css({
-			height: collapsedHeaderHeight
-        });
+			position: 'fixed',
+			top: -headerFixedThreshold
+		});
 		$('#content').css({
 			top: collapsedHeaderHeight
 		});

@@ -13,15 +13,15 @@
 	font-size: 1.0em;
 }
 
-#agenda li.item2 {
+#agenda li.item {
 	padding: 0.5em;
 }
 
-#agenda li.item2 .item2_content {
+#agenda li.item .item_content {
 	width: 225px;
 }
 
-#agenda li.item2 .item2_content .preview {
+#agenda li.item .item_content .preview {
 	display: none;
 }
 
@@ -29,7 +29,7 @@
 	display: none;
 }
 
-#agenda li.item2 .date {
+#agenda li.item .date {
 	float: left;
 	width: 25px;
 	height: 32px;
