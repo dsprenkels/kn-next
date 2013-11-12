@@ -42,7 +42,7 @@ $twig->addFunction($get_slideshow_images_function);
 $context = array();
 
 // do page-specific tasks
-$action = trim($_GET['action']);
+$action = isset($_GET['action']) ? trim($_GET['action']) : '';
 switch ($action) {
 	case 'over':
 		$template = 'over.twig';
