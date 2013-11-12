@@ -29,10 +29,7 @@
 						<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
 						<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
 						<li>{{ header_link(action, 'contact', 'contact') }}</li>
-						<li>
-						<script type="text/javascript">document.write('<a href="javascript:void(null);" onclick="showLoginWindow();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a>');</script>
-						<noscript><a href="https://karpenoktem.nl/accounts/login/" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></noscript>
-						</li>
+						<li><a href="https://karpenoktem.nl/accounts/login/" onclick="showLoginWindow(); event.preventDefault();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></li>
 					</ul>
 				</div>
 			</div>
