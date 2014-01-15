@@ -43,12 +43,10 @@ function slideshow_add() {
 	copy($_FILES["new_slideshow_image"]["tmp_name"], $new_path);
 }
 
-$REQUEST_HEADERS = getallheaders();
-
 // authenticate the user, if Authorization is used
 session_start();
-if (isset($REQUEST_HEADERS['Authorization'])) {
-	$auth_header = explode(' ', $REQUEST_HEADERS['Authorization']);
+if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+	$auth_header = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
 	$credentials = explode(':', base64_decode($auth_header[1]), 2);
 	if ($credentials[0] === "marco" && $credentials[1] === "polo") {
 		$_SESSION['user'] = "marco";
