@@ -16,7 +16,7 @@
  */
 class Twig_Environment
 {
-    const VERSION = '1.15.0';
+    const VERSION = '1.14.1';
 
     protected $charset;
     protected $loader;
@@ -44,6 +44,7 @@ class Twig_Environment
     protected $functionCallbacks;
     protected $filterCallbacks;
     protected $staging;
+    protected $templateClasses;
 
     /**
      * Constructor.
@@ -63,7 +64,7 @@ class Twig_Environment
      *
      *  * auto_reload: Whether to reload the template if the original source changed.
      *                 If you don't provide the auto_reload option, it will be
-     *                 determined automatically based on the debug value.
+     *                 determined automatically base on the debug value.
      *
      *  * strict_variables: Whether to ignore invalid variables in templates
      *                      (default to false).
@@ -107,6 +108,7 @@ class Twig_Environment
         $this->setCache($options['cache']);
         $this->functionCallbacks = array();
         $this->filterCallbacks = array();
+        $this->templateClasses = array();
 
         $this->addExtension(new Twig_Extension_Core());
         $this->addExtension(new Twig_Extension_Escaper($options['autoescape']));
@@ -262,7 +264,13 @@ class Twig_Environment
      */
     public function getTemplateClass($name, $index = null)
     {
-        return $this->templateClassPrefix.hash('sha256', $this->getLoader()->getCacheKey($name)).(null === $index ? '' : '_'.$index);
+        $suffix = null === $index ? '' : '_'.$index;
+        $cls = $name.$suffix;
+        if (isset($this->templateClasses[$cls])) {
+            return $this->templateClasses[$cls];
+        }
+
+        return $this->templateClasses[$cls] = $this->templateClassPrefix.hash('sha256', $this->getLoader()->getCacheKey($name)).$suffix;
     }
 
     /**
@@ -794,11 +802,11 @@ class Twig_Environment
             $filter = $name;
             $name = $filter->getName();
         }
-
+        
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add filter "%s" as extensions have already been initialized.', $name));
         }
-
+        
         $this->staging->addFilter($name, $filter);
     }
 
@@ -883,7 +891,7 @@ class Twig_Environment
             $test = $name;
             $name = $test->getName();
         }
-
+        
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add test "%s" as extensions have already been initialized.', $name));
         }
@@ -941,11 +949,11 @@ class Twig_Environment
             $function = $name;
             $name = $function->getName();
         }
-
+        
         if ($this->extensionInitialized) {
             throw new LogicException(sprintf('Unable to add function "%s" as extensions have already been initialized.', $name));
         }
-
+        
         $this->staging->addFunction($name, $function);
     }
 

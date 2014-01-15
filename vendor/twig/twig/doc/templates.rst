@@ -167,7 +167,7 @@ To apply a filter on a section of code, wrap it with the
 .. code-block:: jinja
 
     {% filter upper %}
-        This text becomes uppercase
+      This text becomes uppercase
     {% endfilter %}
 
 Go to the :doc:`filters<filters/index>` page to learn more about the built-in
@@ -641,9 +641,8 @@ but exists for completeness' sake. The following operators are supported:
 * ``%``: Calculates the remainder of an integer division. ``{{ 11 % 7 }}`` is
   ``4``.
 
-* ``//``: Divides two numbers and returns the floored integer result. ``{{ 20
-  // 7 }}`` is ``2``, ``{{ -20  // 7 }}`` is ``-3``(this is just syntactic
-  sugar for the :doc:`round<filters/round>` filter).
+* ``//``: Divides two numbers and returns the truncated integer result. ``{{
+  20 // 7 }}`` is ``2``.
 
 * ``*``: Multiplies the left operand with the right one. ``{{ 2 * 2 }}`` would
   return ``4``.
@@ -740,16 +739,16 @@ Tests can accept arguments too:
 
 .. code-block:: jinja
 
-    {% if post.status is constant('Post::PUBLISHED') %}
+    {% if loop.index is divisibleby(3) %}
 
 Tests can be negated by using the ``is not`` operator:
 
 .. code-block:: jinja
 
-    {% if post.status is not constant('Post::PUBLISHED') %}
+    {% if loop.index is not divisibleby(3) %}
 
     {# is equivalent to #}
-    {% if not (post.status is constant('Post::PUBLISHED')) %}
+    {% if not (loop.index is divisibleby(3)) %}
 
 Go to the :doc:`tests<tests/index>` page to learn more about the built-in
 tests.
