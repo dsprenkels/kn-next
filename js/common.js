@@ -117,14 +117,32 @@ function showLoginWindow() {
 }
 
 // Implement rot13 for email obscurification
-javascript:String.prototype.rot13 = function(s)
+function rot13 (s)
 {
-  return (s = (s) ? s : this).split('').map(function(_)
-  {
-    if (!_.match(/[A-Za-z]/)) return _;
-    c = _.charCodeAt(0)>=96;
-    k = (_.toLowerCase().charCodeAt(0) - 96 + 12) % 26 + 1;
-    return String.fromCharCode(k + (c ? 96 : 64));
-  }
-  ).join('');
-};
+	return jQuery.map(s.split(''), function(_)
+	{
+		if (!_.match(/[A-Za-z]/)) return _;
+		c = _.charCodeAt(0)>=96;
+		k = (_.toLowerCase().charCodeAt(0) - 96 + 12) % 26 + 1;
+		return String.fromCharCode(k + (c ? 96 : 64));
+	}
+	).join('');
+}
+
+function unobfuscateEmail() {
+	var emails = document.querySelectorAll('.email.obfuscated');
+	for (var i=0; i<emails.length; i++) {
+		var email = emails[i];
+		if (email.textContent) {
+			email.textContent = rot13(email.textContent);
+		} else { /* IE8 */
+			email.innerText = rot13(email.innerText);
+		}
+		email.setAttribute('class', 'email'); // remove 'obfuscated' class
+	}
+}
+if (document.addEventListener) {
+	document.addEventListener('DOMContentLoaded', unobfuscateEmail);
+} else { /* IE8 */
+	window.attachEvent('onload', unobfuscateEmail);
+}
