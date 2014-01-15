@@ -46,6 +46,25 @@ $(document).ready(function() {
 			top: collapsedHeaderHeight
 		});
 	}
+
+	$(document.getElementById('loginButtonLink')).bind('click', function (event) {
+		var loginButton = document.getElementById('loginButton');
+		if (loginButton.getAttribute('class') == 'focused') {
+			loginButton.setAttribute('class', '');
+		} else {
+			loginButton.setAttribute('class', 'focused');
+		}
+		event.preventDefault();
+		event.stopPropagation();
+	});
+
+	$(document.body).bind('click', function (event) {
+		var loginButton = document.getElementById('loginButton');
+		if (loginButton.getAttribute('class') == 'focused') {
+			loginButton.setAttribute('class', '');
+			event.preventDefault();
+		}
+	});
 });
 
 function collapseHeader(img) {
