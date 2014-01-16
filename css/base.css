@@ -73,11 +73,6 @@ a:hover, a:focus {
 	left: 20px;
 }
 
-#header #logo #collapser {
-	position: absolute;
-	left: -35px;
-}
-
 /* navigator */
 #navigator {
 	position: absolute;
