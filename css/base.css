@@ -51,7 +51,8 @@ a:hover, a:focus {
 	height: 400px;
 	font-size: 16px;
 }
-#header.collapsed {
+#header.collapsed,
+body.header-collapsed #header {
 	position: fixed;
 	top: -330px;
 }
@@ -153,6 +154,10 @@ a:hover, a:focus {
 	min-height: 300px;
 	min-height: calc(100% - 450px);
 	padding-bottom: 30px;
+}
+body.header-collapsed #content {
+	padding-top: 90px;
+	min-height: calc(100% - 120px);
 }
 
 /* content */

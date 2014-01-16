@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
-<body>
+<body{% if action != 'index' %} class="header-collapsed"{% endif %}>
 	<div id="pageWrapper">
 		<div id="header">
 			{% from 'macros.twig' import header_link as header_link %}

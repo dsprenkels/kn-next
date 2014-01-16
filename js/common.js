@@ -1,27 +1,28 @@
 var headerFixedThreshold = 330;
-var headerCollapsed = false;
-
-// Menubar half-fixed
-if (! $.browser.mobile) {
-	$(window).scroll(function(e) {
-		var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
-		// don't touch the DOM if that's not needed!
-		if (shouldBeCollapsed !== headerCollapsed) {
-			headerCollapsed = shouldBeCollapsed;
-			if (shouldBeCollapsed) {
-				$('#header').addClass('collapsed');
-			} else {
-				$('#header').removeClass('collapsed');
-			}
-		}
-	});
-}
+var headerCollapsed;
 
 $(document).ready(function() {
-    // ScrollUp animation
+	headerCollapsed = $(document.body).hasClass('header-collapsed');
+	// Menubar half-fixed
+	if (!headerCollapsed && !$.browser.mobile) {
+		$(window).scroll(function(e) {
+			var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
+			// don't touch the DOM if that's not needed!
+			if (shouldBeCollapsed !== headerCollapsed) {
+				headerCollapsed = shouldBeCollapsed;
+				if (shouldBeCollapsed) {
+					$('#header').addClass('collapsed');
+				} else {
+					$('#header').removeClass('collapsed');
+				}
+			}
+		});
+	}
+
+	// ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile) {
+		if(!$.browser.mobile && !$(document.body).hasClass('header-collapsed')) {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
