@@ -39,6 +39,10 @@ a:hover, a:focus {
 	background-position: center;
 	height: 400px;
 }
+#header.collapsed {
+	position: fixed;
+	top: -330px;
+}
 #header, #footer {
 	width: 100%;
 	margin: 0;
