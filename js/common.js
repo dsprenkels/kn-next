@@ -1,7 +1,6 @@
 var headerHeight = 400;
 var collapsedHeaderHeight = 70;
 var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
-var headerCollapsed = false;
 
 // Menubar half-fixed
 if (! $.browser.mobile) {
@@ -24,7 +23,7 @@ $(document).ready(function() {
     // ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile && !headerCollapsed) {
+		if(!$.browser.mobile) {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
@@ -32,43 +31,6 @@ $(document).ready(function() {
 		return false;
 	});
 });
-
-function collapseHeader(img) {
-	if(headerCollapsed) {
-		headerCollapsed = false;
-		img.src = 'img/up.png';
-
-		$('#content').css({
-			top: headerHeight
-		});
-
-		$('#header').css({
-			height: headerHeight
-		});
-
-		if($(window).scrollTop() > headerFixedThreshold) {
-			$('#header').css({
-				position: 'fixed',
-				top: -headerFixedThreshold
-			});
-		} else {
-			$('#header').css({
-				position: 'absolute',
-				top: 0
-			});
-		}
-	} else {
-		headerCollapsed = true;
-		img.src = 'img/down.png';
-        $('#header').css({
-			position: 'fixed',
-			top: -headerFixedThreshold
-		});
-		$('#content').css({
-			top: collapsedHeaderHeight
-		});
-	}
-}
 
 function showLoginWindow() {
 	var doShowWindow = function () {
