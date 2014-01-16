@@ -1,16 +1,12 @@
 var headerHeight = 400;
 var collapsedHeaderHeight = 70;
 var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
+var headerCollapsed = false;
 
 // Menubar half-fixed
 if (! $.browser.mobile) {
 	$(window).scroll(function(e) {
-		if($.cookie('collapseHeader') === 'y') {
-			$('#header').css({
-				position: 'fixed',
-				top: -headerFixedThreshold
-			});
-		} else if($(window).scrollTop() > headerFixedThreshold) {
+		if($(window).scrollTop() > headerFixedThreshold) {
 			$('#header').css({
 				position: 'fixed',
 				top: -headerFixedThreshold
@@ -28,29 +24,18 @@ $(document).ready(function() {
     // ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile && $.cookie('collapseHeader') != 'y') {
+		if(!$.browser.mobile && !headerCollapsed) {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
 		event.preventDefault();
 		return false;
 	});
-
-	// read menu state collapse state from cookie
-	if($.cookie('collapseHeader') === 'y') {
-        $('#header').css({
-			position: 'fixed',
-			top: -headerFixedThreshold
-		});
-		$('#content').css({
-			top: collapsedHeaderHeight
-		});
-	}
 });
 
 function collapseHeader(img) {
-	if($.cookie('collapseHeader') === 'y') {
-		$.cookie('collapseHeader', 'n');
+	if(headerCollapsed) {
+		headerCollapsed = false;
 		img.src = 'img/up.png';
 
 		$('#content').css({
@@ -73,7 +58,7 @@ function collapseHeader(img) {
 			});
 		}
 	} else {
-		$.cookie('collapseHeader', 'y');
+		headerCollapsed = true;
 		img.src = 'img/down.png';
         $('#header').css({
 			position: 'fixed',
