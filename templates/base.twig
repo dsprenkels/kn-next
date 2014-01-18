@@ -45,11 +45,15 @@
 										<td><input id="input-password" type="password" name="password" /></td>
 									</tr>
 									<tr>
-										<td></td>
-										<td><input type="submit" value="Inloggen" /></td>
+										<td><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value=""/></td>
+										<td><input type="submit" id="input-submit" value="Inloggen" disabled=""/></td>
 									</tr>
 								</table>
 							</form>
+							<p id="lw-csrferror" class="error invisible">
+								Kan formulier niet valideren.<br/>
+								<a href="https://www.karpenoktem.nl/accounts/login/">Log in op karpenoktem.nl</a>.
+							</p>
 						</div>
 					</li>
 				</ul>

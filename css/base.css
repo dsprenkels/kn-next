@@ -24,6 +24,13 @@ a:hover, a:focus {
 	text-decoration: underline;
 }
 
+.error {
+	color: red;
+}
+.invisible {
+	display: none;
+}
+
 /* container */
 .container {
 	margin: 0 auto;
@@ -89,29 +96,30 @@ a:hover, a:focus {
 	list-style: none;
 	margin: 0;
 }
-#navigator ul, #navigator a {
+#navigator ul, #navigator li > a {
 	padding: 8px 6px;
 }
 #navigator li {
 	display: inline;
 	margin: 0 6px;
 }
-#navigator a {
+#navigator li > a {
 	border-bottom: solid 3px transparent;
 }
-#navigator a:link, #navigator a:visited {
+#navigator li > a:link,
+#navigator li > a:visited {
 	color: #a0a0a0;
 	text-decoration: none;
 }
-#navigator a:hover {
+#navigator li > a:hover {
 	border-bottom: solid 3px #a31e1b;
 	color: #f0f0f0;
 }
-#navigator a:active {
+#navigator li > a:active {
 	color: #f0f0f0;
 	text-decoration: underline;
 }
-#navigator a.active {
+#navigator li > a.active {
 	color: #f0f0f0;
 	font-weight: bold;
 }
@@ -276,10 +284,6 @@ input:not([type=submit]):not([type=file]) {
 	font-size: 1em;
 	text-transform: uppercase;
 	font-family: sans-serif;
-}
-
-#loginWindow a {
-	color: #ddd;
 }
 
 #loginWindow input[type=text],

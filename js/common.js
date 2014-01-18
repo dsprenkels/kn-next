@@ -47,10 +47,48 @@ $(document).ready(function() {
 		});
 	}
 
+	function getCsrftoken() {
+		var results = document.cookie.match(new RegExp('(^|; *)csrftoken=([^;]+)'));
+		if (results) {
+			return decodeURIComponent(jQuery.trim(results[2]));
+		}
+	}
+
 	$(document.getElementById('loginButtonLink')).bind('click', function (event) {
-		$('#loginButton').toggleClass('open');
+		var loginButton = $('#loginButton');
+		loginButton.toggleClass('open');
 		event.preventDefault();
 		event.originalEvent.loginWindow = true;
+
+		if (!loginButton.hasClass('open')) {
+			return;
+		}
+
+		// insert proper CSRF token
+
+		var csrftoken = getCsrftoken();
+		if (csrftoken) {
+			// easy - the token has already been set
+			$('#csrfmiddlewaretoken').val(csrftoken);
+			$('#input-submit').prop('disabled', false);
+		} else {
+			// try to get the CSRF token with an Ajax request
+			$.get('/accounts/login/')
+				.done(function() {
+					var csrftoken = getCsrftoken();
+					if (csrftoken) {
+						$('#csrfmiddlewaretoken').val(csrftoken);
+						$('#input-submit').prop('disabled', false);
+					} else {
+						$('#lw-csrferror').removeClass('hidden');
+						console.error('failed to load CSRF token - apparently wasn\'t set via Ajax');
+					}
+				})
+				.fail(function() {
+					$('#lw-csrferror').removeClass('invisible');
+					console.error('failed to load CSRF token - could not do an Ajax request');
+				});
+		}
 	});
 
 	$(document.body).bind('click', function (event) {
@@ -103,37 +141,6 @@ function collapseHeader(img) {
 		$('#content').css({
 			top: collapsedHeaderHeight
 		});
-	}
-}
-
-function showLoginWindow() {
-	var doShowWindow = function () {
-		$("#loginWindow").dialog({
-			draggable: false,
-			height: 325,
-			width: 325,
-			modal: true,
-			position: {
-				my: 'right top',
-				at: 'right bottom',
-				of: $('#navigator')
-			},
-			resizable: false,
-			title: 'Inloggen voor leden'
-		});
-	}
-	// Check if we are on the right hostname, then fetch a cookie with
-	// a CSRF-token if not redirect to the standard login page.
-	// If we have a CSRF-token, show the login window
-	if (!$.browser.mobile && window.location.hostname.match(/(^|\.)(karpenoktem\.(nl|com)|kn\.cx)$/i)) {
-		if (!$.cookie('csrftoken')) {
-			$.get('/accounts/login/', {}, doShowWindow); // XXX dit is nog niet niet getest!
-			return;
-		} else {
-			doShowWindow();
-		}
-	} else {
-		window.location.href = 'https://karpenoktem.nl/accounts/login/';
 	}
 }
 
