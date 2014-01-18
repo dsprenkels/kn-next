@@ -48,21 +48,23 @@ $(document).ready(function() {
 	}
 
 	$(document.getElementById('loginButtonLink')).bind('click', function (event) {
-		var loginButton = document.getElementById('loginButton');
-		if (loginButton.getAttribute('class') == 'focused') {
-			loginButton.setAttribute('class', '');
-		} else {
-			loginButton.setAttribute('class', 'focused');
-		}
+		$('#loginButton').toggleClass('open');
 		event.preventDefault();
-		event.stopPropagation();
+		event.originalEvent.loginWindow = true;
 	});
 
 	$(document.body).bind('click', function (event) {
-		var loginButton = document.getElementById('loginButton');
-		if (loginButton.getAttribute('class') == 'focused') {
-			loginButton.setAttribute('class', '');
-			event.preventDefault();
+		if (event.originalEvent.loginWindow) {
+			// don't respond to the event when the click happens inside the login window
+			return;
+		}
+		$('#loginButton').removeClass('open');
+	});
+
+	$('#loginWindow').bind('click', function (event) {
+		if ($('#loginButton').hasClass('open')) {
+			// flag that this event comes from clicking on the login window
+			event.originalEvent.loginWindow = true;
 		}
 	});
 });

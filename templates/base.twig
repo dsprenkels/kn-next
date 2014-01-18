@@ -28,21 +28,21 @@
 					<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
 					<li>{{ header_link(action, 'contact', 'contact') }}</li>
 					<li id="loginButton">
-						<a id="loginButtonLink"><img src="img/login.png" width="13" alt="inloggen"/></a>
+						<a id="loginButtonLink" href="https://www.karpenoktem.nl/accounts/login/"><img src="img/login.png" width="13" alt=""/> leden</a>
 						<div id="loginWindow">
 							<h2>Inloggen voor leden</h2>
 							<p>
 								Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <span class="email">{{ email('webcie@karpenoktem.nl') }}</span>.
 							</p>
-							<form method="POST" action="https://www.karpenoktem.nl/accounts/login/">
+							<form method="POST" action="/accounts/login/">
 								<table>
 									<tr>
-										<td>Gebruikersnaam</td>
-										<td><input type="text" name="username" /></td>
+										<td><label for="input-username">Gebruikersnaam</label></td>
+										<td><input id="input-username" type="text" name="username" /></td>
 									</tr>
 									<tr>
-										<td>Wachtwoord</td>
-										<td><input type="password" name="password" /></td>
+										<td><label for="input-password">Wachtwoord</label></td>
+										<td><input id="input-password" type="password" name="password" /></td>
 									</tr>
 									<tr>
 										<td></td>

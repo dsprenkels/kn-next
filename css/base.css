@@ -45,7 +45,7 @@ a:hover, a:focus {
 	color: #b0b0b0;
 	background-color: #000;
 	font-family: sans-serif;
-	font-size: 16px;	
+	font-size: 16px;
 }
 #footer {
 	position: absolute;
@@ -90,11 +90,11 @@ a:hover, a:focus {
 	margin: 0;
 }
 #navigator ul, #navigator a {
-	padding: 8px 0.4em;
+	padding: 8px 6px;
 }
 #navigator li {
 	display: inline;
-	margin: 0 0.5em;
+	margin: 0 6px;
 }
 #navigator a {
 	border-bottom: solid 3px transparent;
@@ -243,31 +243,31 @@ input:not([type=submit]):not([type=file]) {
 #loginButtonLink:hover img {
 	-webkit-filter: brightness(115%);
 }
-#loginButton.focused #loginButtonLink img {
+#loginButton.open #loginButtonLink img {
 	-webkit-filter: brightness(160%);
 }
 
 #loginWindow {
+	display: none;
+
 	position: absolute;
-	left: -9999px;
-	background-color: #333;
-	color: #ddd;
-	top: 8px;
-	padding: 11px 20px;
-	border-radius: 4px;
-	border: 1px solid #aaa;
+	top: auto;
+	right: -12px;
+	margin-top: 8px;
+	width: 290px;
+	padding: 11px 20px 15px;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px #a31e1b;
+	z-index: -1;
+
+	background-color: rgba(0, 0, 0, 0.92);
+	color: #afafaf;
 	text-transform: none;
 	font-variant: normal;
-	font-family: serif;
-	width: 290px;
-	z-index: 100;
 }
 
-#loginButton:hover #loginWindow,
-#loginButton.focused #loginWindow {
-	left: -290px;
-	top: auto;
-	margin-top: 6px;
+#loginButton.open #loginWindow {
+	display: block;
 }
 
 #loginWindow h2 {
