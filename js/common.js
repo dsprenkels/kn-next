@@ -2,6 +2,23 @@ var headerHeight = 400;
 var collapsedHeaderHeight = 70;
 var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
 
+function getCsrftoken() {
+	if ($.cookie('csrftoken')) {
+		return $.cookie('csrftoken');
+	} else {
+		// http://stackoverflow.com/a/12502559/559350
+		// generate 32 pseudo-random characters
+		var csrftoken = '';
+		for (var i=0; i<4; i++) {
+			csrftoken += Math.random().toString(36).slice(2, 10);
+		}
+		// emulate default Django behavior
+		// https://github.com/django/django/blob/master/django/middleware/csrf.py#L182
+		$.cookie('csrftoken', csrftoken, {path: '/', expires: 7*52})
+		return csrftoken;
+	}
+}
+
 // Menubar half-fixed
 if (! $.browser.mobile) {
 	$(window).scroll(function(e) {
@@ -47,48 +64,13 @@ $(document).ready(function() {
 		});
 	}
 
-	function getCsrftoken() {
-		var results = document.cookie.match(new RegExp('(^|; *)csrftoken=([^;]+)'));
-		if (results) {
-			return decodeURIComponent(jQuery.trim(results[2]));
-		}
-	}
+	$('#csrfmiddlewaretoken').val(getCsrftoken());
 
 	$(document.getElementById('loginButtonLink')).bind('click', function (event) {
 		var loginButton = $('#loginButton');
 		loginButton.toggleClass('open');
 		event.preventDefault();
 		event.originalEvent.loginWindow = true;
-
-		if (!loginButton.hasClass('open')) {
-			return;
-		}
-
-		// insert proper CSRF token
-
-		var csrftoken = getCsrftoken();
-		if (csrftoken) {
-			// easy - the token has already been set
-			$('#csrfmiddlewaretoken').val(csrftoken);
-			$('#input-submit').prop('disabled', false);
-		} else {
-			// try to get the CSRF token with an Ajax request
-			$.get('/accounts/login/')
-				.done(function() {
-					var csrftoken = getCsrftoken();
-					if (csrftoken) {
-						$('#csrfmiddlewaretoken').val(csrftoken);
-						$('#input-submit').prop('disabled', false);
-					} else {
-						$('#lw-csrferror').removeClass('hidden');
-						console.error('failed to load CSRF token - apparently wasn\'t set via Ajax');
-					}
-				})
-				.fail(function() {
-					$('#lw-csrferror').removeClass('invisible');
-					console.error('failed to load CSRF token - could not do an Ajax request');
-				});
-		}
 	});
 
 	$(document.body).bind('click', function (event) {

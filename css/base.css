@@ -24,13 +24,6 @@ a:hover, a:focus {
 	text-decoration: underline;
 }
 
-.error {
-	color: red;
-}
-.invisible {
-	display: none;
-}
-
 /* container */
 .container {
 	margin: 0 auto;
