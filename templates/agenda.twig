@@ -28,10 +28,13 @@
 	<li class="monthSeparator">{{ item.month }}</li>
 
 	{% endif %}
-	<li class="item" onclick="$(this).find('.description').toggleClass('preview');">
+	<li class="item" onclick="$(this).find('.description').toggleClass('preview');$(this).find('.arrow').toggleClass('opened').css('height', ($(this).find('.item_content').height() - 40) +'px');">
 		<div class="item_wrapper">
-			<div class="date">
-		    {{ item.short_date|join('<br />') }}
+			<div class="dateholder">
+				<div class="date">
+					{{ item.short_date|join('<br />') }}
+				</div>
+				<div class="arrow"></div>
 			</div>
 			<div class="item_content">
 				<div class="titlebar">
