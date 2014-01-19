@@ -41,8 +41,11 @@
 	cursor: pointer;
 }
 
-#agenda li.item .date {
+#agenda li.item .dateholder {
 	float: left;
+}
+
+#agenda li.item .date {
 	width: 35px;
 	height: 42px;
 	margin: 0;
@@ -56,6 +59,20 @@
 	font-size: 1.2em;
 	font-family: sans-serif;
 	color: #eee;
+}
+
+#agenda li.item .arrow {
+	width: 55px;
+	text-align: center;
+	height: 10px;
+	margin-top: 3px;
+	background-image: url(../img/agenda_open.png);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+#agenda li.item .opened {
+	background-image: url(../img/agenda_close.png);
 }
 
 #agenda li.item .item_content {

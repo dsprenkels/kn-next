@@ -7,9 +7,9 @@
 		{% set active = self == action %}
 	{% endif %}
 	{% if active %}
-		<a href="index.php?action={{ action }}" class="active"{{ extra|raw }}>{{ title|raw }}</a>
+		<a href="/{{ action }}" class="active"{{ extra|raw }}>{{ title|raw }}</a>
 	{% else %}
-		<a href="index.php?action={{ action }}"{{ extra|raw }}>{{ title|raw }}</a>
+		<a href="/{{ action }}"{{ extra|raw }}>{{ title|raw }}</a>
 	{% endif %}
 {% endspaceless %}
 {% endmacro %}

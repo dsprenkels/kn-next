@@ -5,9 +5,7 @@
  * This file may include multiple pages.
  */
 
-// define constants
-define('TEMPLATES_DIR', 'templates/');
-define('SLIDESHOW_DIR', 'img/slideshow/');
+require_once('common.php');
 
 function get_slideshow_images() {
 	$files = scandir(SLIDESHOW_DIR);
@@ -88,31 +86,6 @@ if (! empty($_POST)) {
 // bigpicture change
 
 // call make
-
-
-
-
-
-// include TWIG
-require_once("vendor/autoload.php");
-
-// build new Twig Environment
-$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
-	'auto_reload' => true,
-	'strict_variables' => true,
-	'autoescape' => false,
-));
-
-// add a rot13 filter for email
-$rot13_filter = new Twig_SimpleFilter('rot13', 'str_rot13');
-$twig->addFilter($rot13_filter);
-
-// add email obscurify function
-$email_function = new Twig_SimpleFunction('email', function ($addr) {
-	return '<script type="text/javascript">document.write("' . str_rot13($addr) . '".rot13())</script>
-<noscript>(e-mailadres verborgen)</noscript>'; 
-});
-$twig->addFunction($email_function);
 
 
 $context = array(
