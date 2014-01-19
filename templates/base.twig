@@ -6,35 +6,56 @@
 	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 	<link rel="icon" type="image/png" href="favicon.png">
 	<title>{% if title is defined and title %}{{ title }} – {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
 <body{% if action != 'index' %} class="header-collapsed"{% endif %}>
-	<div id="pageWrapper">
-		<div id="header">
-			{% from 'macros.twig' import header_link as header_link %}
-			<div class="container">
-				<div id="logo">{{ header_link(action, 'index', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">') }}</div>
-				<div id="navigator" class="container">
-					<ul>
-						<li>{{ header_link(action, 'agenda', 'agenda') }}</li>
-						<li>{{ header_link(action, 'over', 'over') }}</li>
-						<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
-						<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
-						<li>{{ header_link(action, 'contact', 'contact') }}</li>
-						<li><a href="https://karpenoktem.nl/accounts/login/" onclick="showLoginWindow(); event.preventDefault();" title="Inloggen voor leden"><img src="img/login.png" width="13" alt="inloggen"/></a></li>
-					</ul>
-				</div>
+	<div id="header">
+		{% from 'macros.twig' import header_link as header_link %}
+		<div class="container">
+			<div id="logo">{{ header_link(action, 'index', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">') }}</div>
+			<div id="navigator" class="container">
+				<ul>
+					<li>{{ header_link(action, 'agenda', 'agenda') }}</li>
+					<li>{{ header_link(action, 'over', 'over') }}</li>
+					<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
+					<li>{{ header_link(action, 'lidworden', 'lid worden') }}</li>
+					<li>{{ header_link(action, 'contact', 'contact') }}</li>
+					<li id="loginButton">
+						<a id="loginButtonLink" href="https://www.karpenoktem.nl/accounts/login/"><img src="img/login.png" width="13" alt=""/> leden</a>
+						<div id="loginWindow">
+							<h2>Inloggen voor leden</h2>
+							<p>
+								Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <span class="email">{{ email('webcie@karpenoktem.nl') }}</span>.
+							</p>
+							<form method="POST" action="/accounts/login/">
+								<table>
+									<tr>
+										<td><label for="input-username">Gebruikersnaam</label></td>
+										<td><input id="input-username" type="text" name="username" /></td>
+									</tr>
+									<tr>
+										<td><label for="input-password">Wachtwoord</label></td>
+										<td><input id="input-password" type="password" name="password" /></td>
+									</tr>
+									<tr>
+										<td><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value=""/></td>
+										<td><input type="submit" id="input-submit" value="Inloggen"/></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
-		<div id="content">
-			<div class="container">
+	</div>
+	<div id="content">
+		<div class="container">
 {% block content %}
 {% block overMenu %}
 <div id="overMenu">
@@ -51,37 +72,15 @@
 	<h1>{{ title|lower }}</h1>
 {% endif %}
 {% endblock content %}
-			</div>
-			<div id="footer">
-				<div class="container">
+		</div>
+		<div id="footer">
+			<div class="container">
 {% block footer %}
-					&copy; Alternatieve studentenvereniging <span style="font-family: Variex;">Karpe Noktem</span>
-					<small><a id="scrollUp" href="#">Terug naar boven</a></small>
+				&copy; Alternatieve studentenvereniging <span style="font-family: Variex;">Karpe Noktem</span>
+				<small><a id="scrollUp" href="#">Terug naar boven</a></small>
 {% endblock footer %}
-				</div>
 			</div>
 		</div>
-	</div>
-	<div id="loginWindow" style="display: none;">
-		<p>
-			Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar <span class="email">{{ email('webcie@karpenoktem.nl') }}</span>.
-		</p>
-		<form method="POST" action="https://www.karpenoktem.nl/accounts/login/">
-			<table>
-				<tr>
-					<td>Gebruikersnaam</td>
-					<td><input type="text" name="username" /></td>
-				</tr>
-				<tr>
-					<td>Wachtwoord</td>
-					<td><input type="password" name="password" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Inloggen" /></td>
-				</tr>
-			</table>
-		</form>
 	</div>
 </body>
 </html>

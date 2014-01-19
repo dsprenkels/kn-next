@@ -8,10 +8,12 @@ body {
 	background-repeat: no-repeat;
 	background-position: 100% 400px;
 }
+body.header-collapsed {
+	background-position: 100% 70px;
+}
 
 html,
-body,
-#pageWrapper {
+body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -101,29 +103,30 @@ body.header-collapsed #header {
 	list-style: none;
 	margin: 0;
 }
-#navigator ul, #navigator a {
-	padding: 8px 0.4em;
+#navigator ul, #navigator li > a {
+	padding: 8px 6px;
 }
 #navigator li {
 	display: inline;
+	margin: 0 6px;
 }
-#navigator a {
-	margin: 0 0.5em;
+#navigator li > a {
 	border-bottom: solid 3px transparent;
 }
-#navigator a:link, #navigator a:visited {
+#navigator li > a:link,
+#navigator li > a:visited {
 	color: #a0a0a0;
 	text-decoration: none;
 }
-#navigator a:hover {
+#navigator li > a:hover {
 	border-bottom: solid 3px #a31e1b;
 	color: #f0f0f0;
 }
-#navigator a:active {
+#navigator li > a:active {
 	color: #f0f0f0;
 	text-decoration: underline;
 }
-#navigator a.active {
+#navigator li > a.active {
 	color: #f0f0f0;
 	font-weight: bold;
 }
@@ -237,6 +240,50 @@ input:not([type=submit]):not([type=file]) {
 	color: #102020;
 }
 
-#loginWindow a {
-	color: #ddd;
+#loginButton {
+	position: relative;
+}
+
+#loginButtonLink:hover img {
+	-webkit-filter: brightness(115%);
+}
+#loginButton.open #loginButtonLink img {
+	-webkit-filter: brightness(150%);
+}
+
+#loginWindow {
+	display: none;
+
+	position: absolute;
+	top: auto;
+	right: -12px;
+	margin-top: 8px;
+	width: 290px;
+	padding: 11px 20px 15px;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0px 1px 4px #a31e1b;
+	z-index: -1;
+
+	background-color: #000; /* IE8 */
+	background-color: rgba(0, 0, 0, 0.92);
+	color: #afafaf;
+	text-transform: none;
+	font-variant: normal;
+}
+
+#loginButton.open #loginWindow {
+	display: block;
+}
+
+#loginWindow h2 {
+	padding: 4px 0;
+	margin: 0;
+	font-size: 1em;
+	text-transform: uppercase;
+	font-family: sans-serif;
+}
+
+#loginWindow input[type=text],
+#loginWindow input[type=password] {
+	width: 160px;
 }
