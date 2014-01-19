@@ -45,10 +45,8 @@ function slideshow_add() {
 
 // authenticate the user, if Authorization is used
 session_start();
-if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-	$auth_header = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
-	$credentials = explode(':', base64_decode($auth_header[1]), 2);
-	if ($credentials[0] === "marco" && $credentials[1] === "polo") {
+if (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])) {
+	if ($_SERVER['PHP_AUTH_USER'] === "marco" && $_SERVER['PHP_AUTH_PW'] === "polo") {
 		$_SESSION['user'] = "marco";
 	}
 }
