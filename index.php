@@ -1,30 +1,12 @@
 <?php
 
 
+require_once('common.php');
 
 // define constants
-define('TEMPLATES_DIR', 'templates/');
-define('SLIDESHOW_DIR', 'img/slideshow/');
 define('AGENDA_JSON_FILE', '/tmp/kn-next_agenda.json');
 define('FETCH_AGENDA_SCRIPT', __DIR__ . '/utils/fetch_agenda.py');
 
-
-// include TWIG
-require_once("vendor/autoload.php");
-
-// build new Twig Environment
-$twig = new Twig_Environment(new Twig_Loader_Filesystem(TEMPLATES_DIR), array(
-	'auto_reload' => true,
-	'strict_variables' => true,
-	'autoescape' => false,
-));
-
-// add email obscurify function
-$email_function = new Twig_SimpleFunction('email', function ($addr) {
-	return '<script type="text/javascript">document.write("' . str_rot13($addr) . '".rot13())</script>
-<noscript>(e-mailadres verborgen)</noscript>'; 
-});
-$twig->addFunction($email_function);
 
 $get_slideshow_images_function = new Twig_SimpleFunction('get_slideshow_images', function() {
 	$files = scandir(SLIDESHOW_DIR);
@@ -127,4 +109,5 @@ if($action == 'index' || $action == 'agenda') {
 
 $html = $twig->render($template, $context);
 
-echo $html;
+header('Content-Length: ' . strlen($html));
+print $html;

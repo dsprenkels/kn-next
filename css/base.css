@@ -204,6 +204,9 @@ a:hover, a:focus {
 .email {
 	font-family: monospace;
 }
+.email.obfuscated {
+	visibility: hidden;
+}
 
 /* overmenu */
 
