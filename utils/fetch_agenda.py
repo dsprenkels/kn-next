@@ -65,13 +65,13 @@ def retreive(cid):
 def print_events(events):
         erepl = re.compile("([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})",
                            re.IGNORECASE)
+
         def erepl_replace(matchobj):
             email_rot13 = string.translate(matchobj.group(), rot13)
-            return ('<script type="text/javascript">document.write'
-                '("%s".rot13())</script><noscript>(e-mailadres verborgen)'
-                '</noscript>') % email_rot13 
+            return ('<span class="email obfuscated">%s</span>') % email_rot13
+
         villare = re.compile("(villa van schaeck)", re.IGNORECASE)
-        
+
         # Process the events
         processed_events = []
         # Loop over the *sorted* list
