@@ -127,7 +127,5 @@ if($action == 'index' || $action == 'agenda') {
 
 $html = $twig->render($template, $context);
 
-$html_gz = gzencode($html);
-header('Content-Encoding: gzip');
-header('Content-Length: ' . strlen($html_gz));
-echo $html_gz;
+header('Content-Length: ' . strlen($html));
+print $html;
