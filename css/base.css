@@ -245,7 +245,7 @@ input:not([type=submit]):not([type=file]) {
 	-webkit-filter: brightness(115%);
 }
 #loginButton.open #loginButtonLink img {
-	-webkit-filter: brightness(160%);
+	-webkit-filter: brightness(150%);
 }
 
 #loginWindow {
