@@ -82,18 +82,12 @@ switch ($action) {
 		$template = 'index.twig';
 		break;
 	default:
-		if(preg_match('/^bestuur([0-9]+)$/', $action, $m)) {
-			if(file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
-				$action = 'bestuur'. $m[1];
-				$template = 'bestuur/bestuur'. $m[1] .'.twig';
-			} else {
-				$action = 'index';
-				$template = 'index.twig';
-			}
-			break;
+		if(preg_match('/^bestuur([0-9]+)$/', $action, $m) && file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
+			$action = 'bestuur'. $m[1];
+			$template = 'bestuur/bestuur'. $m[1] .'.twig';
 		} else {
-			$action = 'index';
-			$template = 'index.twig';
+			header('Status: 404', true, 404);
+			$template = '404.twig';
 		}
 		break;
 }
