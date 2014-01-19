@@ -46,7 +46,7 @@
 		</script>
 	</div>
 	<div id="agenda">
-		<h1>agenda</h1>
+		<h1><a href="?action=agenda">agenda</a></h1>
 		<ul id="fullagenda">
 
 			{% for item in agenda %}
@@ -58,7 +58,7 @@
 				<li class="item" onclick="$(this).find('.description').toggleClass('preview');">
 					<div class="item_wrapper">
 						<div class="date">
-						{{ item.short_date|join('<br />') }}
+							{{ item.short_date|join('<br />') }}
 						</div>
 						<div class="item_content">
 							<div class="titlebar">

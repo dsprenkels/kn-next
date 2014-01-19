@@ -169,6 +169,12 @@ a:hover, a:focus {
 	padding: 4px 0;
 	margin: 0;
 }
+#content h1 a {
+	color: #404040;
+}
+#content h1 a:hover {
+	text-decoration: none;
+}
 #content img {
 	padding: 4px;
 	border: solid 1px #aaa;
