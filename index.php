@@ -109,4 +109,5 @@ if($action == 'index' || $action == 'agenda') {
 
 $html = $twig->render($template, $context);
 
-echo $html;
+header('Content-Length: ' . strlen($html));
+print $html;
