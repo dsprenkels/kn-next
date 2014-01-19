@@ -19,8 +19,12 @@ function getCsrftoken() {
 	}
 }
 
+function isMobile() {
+	return ($(window).width() < 800  && 'ontouchstart' in document.documentElement);
+}
+
 // Menubar half-fixed
-if (! $.browser.mobile) {
+if (! isMobile()) {
 	$(window).scroll(function(e) {
 		if($.cookie('collapseHeader') === 'y') {
 			$('#header').css({
@@ -45,7 +49,7 @@ $(document).ready(function() {
     // ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile && $.cookie('collapseHeader') != 'y') {
+		if(!isMobile && $.cookie('collapseHeader') != 'y') {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
