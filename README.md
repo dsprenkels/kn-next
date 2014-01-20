@@ -13,8 +13,9 @@ In Lighttpd, you can use these rules to accomplish this:
 
     url.rewrite += (
         # Do not redirect these urls
-        "^/$" => "/kn-next/index.php",
+        "^/$" => "/kn-next/index.php?action=index",
         "^/(css|js|img|aktas)(?:/(.*))?$" => "/kn-next/$0",
         # Redirect the rest to the action
+        "^/admin$" => "/kn-next/admin.php",
         "^/(.*)$" => "/kn-next/index.php?action=$1"
     )
