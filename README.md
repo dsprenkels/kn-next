@@ -9,7 +9,7 @@ You'll have to load the agenda with a CRON-script, or for testing by hand:
 Also, kn-next needs rewrite-rules, so that `/over` will be redirected to
 `/index.php?action=over`.
 
-You can use these rules to accomplish this:
+In Lighttpd, you can use these rules to accomplish this:
 
     url.rewrite += (
         # Do not redirect these urls
@@ -17,4 +17,4 @@ You can use these rules to accomplish this:
         "^/(css|js|img|aktas)(?:/(.*))?$" => "/kn-next/$0",
         # Redirect the rest to the action
         "^/(.*)$" => "/kn-next/index.php?action=$1"
-   )
+    )
