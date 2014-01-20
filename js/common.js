@@ -18,10 +18,14 @@ function getCsrftoken() {
 	}
 }
 
+function isMobile() {
+	return ($(window).width() < 800  && 'ontouchstart' in document.documentElement);
+}
+
 $(document).ready(function() {
 	headerCollapsed = $(document.body).hasClass('header-collapsed');
 	// Menubar half-fixed
-	if (!headerCollapsed && !$.browser.mobile) {
+	if (!headerCollapsed && !isMobile()) {
 		$(window).scroll(function(e) {
 			var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
 			// don't touch the DOM if that's not needed!
@@ -39,7 +43,7 @@ $(document).ready(function() {
 	// ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!$.browser.mobile && !$(document.body).hasClass('header-collapsed')) {
+		if(!isMobile() && !headerCollapsed) {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
