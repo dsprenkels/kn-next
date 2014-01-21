@@ -65,8 +65,6 @@ body.header-collapsed #header {
 	font-family: sans-serif;
 }
 #footer {
-	position: absolute;
-	bottom: 0;
 	padding: 4px 0;
 	height: 24px;
 	font-size: 14px;
@@ -153,14 +151,14 @@ body.header-collapsed #header {
 	position: relative;
 	margin: 0 auto;
 	padding-top: 420px;
+	padding-bottom: 10px;
 	width: 100%;
 	min-height: 300px;
-	min-height: calc(100% - 450px);
-	padding-bottom: 30px;
+	min-height: calc(100% - 462px);
 }
 body.header-collapsed #content {
 	padding-top: 90px;
-	min-height: calc(100% - 120px);
+	min-height: calc(100% - 132px);
 }
 
 /* content */
