@@ -51,12 +51,12 @@ a:hover, a:focus {
 	position: absolute;
 	padding: 0.25em 0;
 	font-size: 14px;
-	box-shadow: 0px -1px 4px #a31e1b;
+	box-shadow: 0px -2px 3px 0px #a31e1b;
 	bottom: -0px;
 }
 @media screen and (min-width: 800px) {
 	#header {
-		box-shadow: 0px 1px 4px #a31e1b;
+		box-shadow: 0px 2px 3px #a31e1b;
 	}
 }
 #header > * {
@@ -267,7 +267,7 @@ input:not([type=submit]):not([type=file]) {
 	width: 290px;
 	padding: 11px 20px 15px;
 	border-radius: 0 0 4px 4px;
-	box-shadow: 0px 1px 4px #a31e1b;
+	box-shadow: 0px 0px 3px #a31e1b;
 	z-index: -1;
 
 	background-color: #000; /* IE8 */
