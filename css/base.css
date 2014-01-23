@@ -201,12 +201,6 @@ a:hover, a:focus {
 	float: right;
 }
 
-/* variex font van het logo */
-@font-face {
-    font-family: Variex; 
-    src: url("Variex.ttf");
-}
-
 .email {
 	font-family: monospace;
 }
