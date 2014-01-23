@@ -1,2 +1,6 @@
-build
+/yoghurt/settings.py
+/ENV
+/static
+/db.sqlite3
 *~
+*.pyc

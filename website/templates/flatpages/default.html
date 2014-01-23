@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load evaluate %}
+
+{% block content %}
+{{ block.super }}
+
+{% evaluate flatpage.content %}
+
+{% endblock content %}

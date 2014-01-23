@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{# no title defined #}
+
+{% block head %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/jquery.nivo.slider.pack.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/agenda.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/nivo-slider.css' %}" />
+<link rel="stylesheet" href="{% static 'css/nivo-slider/default.css' %}" type="text/css" media="screen" />
+{% endblock head %}
+
+{% block overMenu %}
+{% endblock overMenu %}
+
+{% block content %}
+{{ block.super }}
+
+<div id="home-container">
+	<div id="random-text">
+		<p>
+			Welkom op de website van <strong>Alternatieve studentenvereniging Karpe Noktem</strong>.
+		</p>
+
+		<div class="slider-wrapper theme-default">
+			<div id="slider" class="nivoSlider">
+			{% comment %}
+				{% for filename in get_slideshow_images() %}
+				<img src="img/slideshow/{{filename}}" alt="" />
+				{% endfor %}
+			{% endcomment %}
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(window).load(function() {
+				$('#slider').nivoSlider({
+					effect: 'sliceDown',
+					animSpeed: 750,
+					pauseTime: 5000,
+					pauseOnHover: true,
+					prevText: 'vorige',
+					nextText: 'volgende',
+					directionNav: true,
+					randomStart: false
+				});
+			});
+		</script>
+	</div>
+	<div id="agenda">
+		<h1><a href="/agenda">agenda</a></h1>
+		<ul id="fullagenda">
+{% comment %}
+			{% for item in agenda %}
+				{% if not (last_month is defined and last_month == item.month) %}
+					{% set last_month = item.month %}
+				<li class="monthSeparator">{{ item.month }}</li>
+
+				{% endif %}
+				<li class="item" onclick="$(this).find('.description').toggleClass('preview');">
+					<div class="item_wrapper">
+						<div class="date">
+							{{ item.short_date|join('<br />') }}
+						</div>
+						<div class="item_content">
+							<div class="titlebar">
+								<span class="title">{{ item.title }}</span>
+				{% if item.end_date %}
+								<span class="datelong">{{ item.start_date }}&mdash;{{ item.end_date }}</span></div>
+				{% endif %}
+							<div class="description preview">
+								{{ item.description }}
+							</div>
+						</div>
+					</div>
+					<div style="clear: both;"></div>
+				</li>
+			{% endfor %}
+{% endcomment %}
+		</ul>
+	</div>
+</div>
+<div style="clear: both;"></div>
+
+{% endblock content %}

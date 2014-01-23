@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+{% block head %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
+	{# De volgende style-regel moet vóór base.css geladen worden! #}
+	<style type="text/css">#header { background: url('{% static "img/headers/zomerweekend.jpg" %}'); }</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<title>{% if title %}{{ title }} – {% endif %}Studentenvereniging Karpe Noktem</title>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+{% endblock head %}
+</head>
+<body>
+	<div id="header">
+		<div class="container">
+			<div id="logo"><img id="collapser" src="{% static 'img/up.png' %}" onclick="collapseHeader(this);" /> <a href="{% url 'flatpage' 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Karpe Noktem" style="width: 310px;"></a></div>
+			<div id="navigator" class="container">
+				<ul>
+					<li><a href="{% url 'flatpage' 'hoi' %}">agenda</a></li>
+					<li><a href="{% url 'flatpage' 'over' %}">over</a></li>
+					<li><a href="https://www.karpenoktem.nl/fotos">foto's</a></li>
+					<li><a href="{% url 'flatpage' 'lidworden' %}">lid worden</a></li>
+					<li><a href="{% url 'flatpage' 'contact' %}">contact</a></li>
+					<li id="loginButton">
+						<a id="loginButtonLink" href="https://www.karpenoktem.nl/accounts/login/"><img src="{% static 'img/login.png' %}" width="13" alt=""/> leden</a>
+						<div id="loginWindow">
+							<h2>Inloggen voor leden</h2>
+							<p>
+								Leden kunnen hier inloggen om o.a. het smoelenboek, de wiki en het forum te bekijken. Weet je je wachtwoord niet meer, mail dan naar #FIXME.
+							</p>
+							<form method="POST" action="/accounts/login/">
+								<table>
+									<tr>
+										<td><label for="input-username">Gebruikersnaam</label></td>
+										<td><input id="input-username" type="text" name="username" /></td>
+									</tr>
+									<tr>
+										<td><label for="input-password">Wachtwoord</label></td>
+										<td><input id="input-password" type="password" name="password" /></td>
+									</tr>
+									<tr>
+										<td><input type="hidden" id="csrfmiddlewaretoken" name="csrfmiddlewaretoken" value=""/></td>
+										<td><input type="submit" id="input-submit" value="Inloggen"/></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="content">
+		<div class="container">
+{% block content %}
+{% block overMenu %}
+<div id="overMenu">
+{# FIXME dynamische links #}
+
+</div>
+{% endblock overMenu %}
+{% if title %}
+	<h1>{{ title|lower }}</h1>
+{% endif %}
+{% endblock content %}
+		</div>
+		<div id="footer">
+			<div class="container">
+{% block footer %}
+				&copy; Alternatieve studentenvereniging <span style="font-family: Variex;">Karpe Noktem</span>
+				<small><a id="scrollUp" href="#">Terug naar boven</a></small>
+{% endblock footer %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
