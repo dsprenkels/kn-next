@@ -80,6 +80,9 @@ switch ($action) {
 	case 'contact':
 		$template = 'contact.twig';
 		break;
+	case 'route':
+		$template = 'route.twig';
+		break;
 	case 'index':
 	case 'default': // alias ...
 	case 'home':    // alias ...
