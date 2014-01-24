@@ -1,6 +1,5 @@
 <?php
 
-
 require_once('common.php');
 
 // define constants
@@ -25,9 +24,32 @@ $context = array();
 
 // do page-specific tasks
 $action = isset($_GET['action']) ? trim($_GET['action']) : '';
-switch ($action) {
-	case 'over':
+switch (strtolower($action)) {
+	case 'lustrum':
+	case 'lustrumposter':
+	case 'intro2008':
+	case 'intro2009':
+	case 'intro2010':
+	case 'introposter2009':
+	case 'introposter2010':
+	case 'introposter2011':
+	case 'introposter2012':
+	case 'introposter2013':
+	case 'links':
+	case 'media':
+	case 'merchandise':
+	case 'openweekposter2013':
+	case 'release':
+	case 'default': // alias ...
+	case 'home':    // alias ...
+		header('Status: 301 Moved Permanently', true, 301);
+		header('Location: /');
+		exit;
 	case 'watis': // alias for historical reasons, do not use
+		header('Status: 301 Moved Permanently', true, 301);
+		header('Location: /over');
+		exit;
+	case 'over':
 		$template = 'over.twig';
 		break;
 	case 'geschiedenis':
@@ -84,8 +106,7 @@ switch ($action) {
 		$template = 'route.twig';
 		break;
 	case 'index':
-	case 'default': // alias ...
-	case 'home':    // alias ...
+	case 'index.php': //alias ...
 		$action = 'index';
 		$template = 'index.twig';
 		break;
@@ -104,7 +125,7 @@ $context['action'] = $action;
 if($action == 'index' || $action == 'agenda') {
 	$agenda_json = file_get_contents(AGENDA_JSON_FILE);
 	if (! $agenda_json) {
-		die('ERROR bij het laden van de agenda');
+		die('Fout bij het laden van de agenda');
 	}
 	$context['agenda'] = json_decode($agenda_json);
 }
