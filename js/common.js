@@ -86,12 +86,16 @@ function unobfuscateEmail() {
 	var emails = document.querySelectorAll('.email.obfuscated');
 	for (var i=0; i<emails.length; i++) {
 		var email = emails[i];
+		var email_link = document.createElement('a');
 		if (email.textContent) {
-			email.textContent = rot13(email.textContent);
+			email_link.textContent = rot13(email.textContent);
 		} else { /* IE8 */
-			email.innerText = rot13(email.innerText);
+			email_link.innerText = rot13(email.innerText);
 		}
-		email.setAttribute('class', 'email'); // remove 'obfuscated' class
+		email_link.href = 'mailto:' + (email_link.textContent || email_link.innerText);
+		email_link.setAttribute('class', 'email');
+		email.parentNode.insertBefore(email_link, email);
+		email.parentNode.removeChild(email);
 	}
 }
 if (document.addEventListener) {

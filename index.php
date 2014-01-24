@@ -27,6 +27,7 @@ $context = array();
 $action = isset($_GET['action']) ? trim($_GET['action']) : '';
 switch ($action) {
 	case 'over':
+	case 'watis': // alias for historical reasons, do not use
 		$template = 'over.twig';
 		break;
 	case 'geschiedenis':
@@ -40,6 +41,8 @@ switch ($action) {
 		$template = 'bestuur/bestuur10.twig';
 		break;
 	case 'aktanokturna':
+	case 'akta': // alias ...
+	case 'an':   // alias ...
 		$template = 'aktanokturna.twig';
 		$context['aktas'] = array();
 		foreach(glob('aktas/Jaargang*') as $jaargang) {
@@ -77,7 +80,12 @@ switch ($action) {
 	case 'contact':
 		$template = 'contact.twig';
 		break;
+	case 'route':
+		$template = 'route.twig';
+		break;
 	case 'index':
+	case 'default': // alias ...
+	case 'home':    // alias ...
 		$action = 'index';
 		$template = 'index.twig';
 		break;
