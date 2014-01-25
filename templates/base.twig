@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width">
 	<meta name="description" content="Alternatieve studentenvereniging Karpe Noktem uit Nijmegen">
 	<link rel="stylesheet" type="text/css" href="css/base.css">
-	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="icon" href="img/favicon.ico">
 	<title>{% if title is defined and title %}{{ title }} – {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -17,7 +17,7 @@
 	<div id="header">
 		{% from 'macros.twig' import header_link as header_link %}
 		<div class="container">
-			<div id="logo">{{ header_link(action, '', '<img src="img/logo.png" alt="Karpe Noktem" style="width: 310px;">') }}</div>
+			<div id="logo">{{ header_link(action, '', '<img src="img/logo.png" alt="Karpe Noktem" width="310" height="41">') }}</div>
 			<div id="navigator" class="container">
 				<ul>
 					<li>{{ header_link(action, 'agenda', 'agenda') }}</li>
