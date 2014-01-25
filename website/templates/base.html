@@ -9,7 +9,7 @@
 	{# De volgende style-regel moet vóór base.css geladen worden! #}
 	<style type="text/css">#header { background: url('{% static "img/headers/zomerweekend.jpg" %}'); }</style>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-	<link rel="icon" href="img/favicon.ico">
+	<link rel="icon" href="{% static 'img/favicon.ico' %}">
 	<title>{% if title %}{{ title }} – {% endif %}Studentenvereniging Karpe Noktem</title>
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
