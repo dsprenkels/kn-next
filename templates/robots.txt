@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /forum/
+Disallow: /fotos/
+Disallow: /mailman/archives/
+Disallow: /wiki/

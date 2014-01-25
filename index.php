@@ -110,6 +110,10 @@ switch (strtolower($action)) {
 		$action = 'index';
 		$template = 'index.twig';
 		break;
+	case 'robots.txt':
+                header('Content-type: text/plain');
+		$template = 'robots.txt';
+		break;
 	default:
 		if(preg_match('/^bestuur([0-9]+)$/', $action, $m) && file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
 			$action = 'bestuur'. $m[1];
