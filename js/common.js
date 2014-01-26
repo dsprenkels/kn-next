@@ -25,19 +25,23 @@ function isMobile() {
 $(document).ready(function() {
 	headerCollapsed = $(document.body).hasClass('header-collapsed');
 	// Menubar half-fixed
-	if (!headerCollapsed && !isMobile()) {
-		$(window).scroll(function(e) {
-			var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
-			// don't touch the DOM if that's not needed!
-			if (shouldBeCollapsed !== headerCollapsed) {
-				headerCollapsed = shouldBeCollapsed;
-				if (shouldBeCollapsed) {
-					$('#header').addClass('collapsed');
-				} else {
-					$('#header').removeClass('collapsed');
-				}
+	function fixHeader(e) {
+		var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
+		// don't touch the DOM if that's not needed!
+		if (shouldBeCollapsed !== headerCollapsed) {
+			headerCollapsed = shouldBeCollapsed;
+			if (shouldBeCollapsed) {
+				console.log('adding collapsed class');
+				$('#header').addClass('collapsed');
+			} else {
+				console.log('removing collapsed class');
+				$('#header').removeClass('collapsed');
 			}
-		});
+		}
+	}
+	if (!headerCollapsed && !isMobile()) {
+		fixHeader();
+		$(window).scroll(fixHeader);
 	}
 
 	// ScrollUp animation
