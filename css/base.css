@@ -24,6 +24,10 @@ a:hover, a:focus {
 	text-decoration: underline;
 }
 
+.clear {
+	clear: both;
+}
+
 /* container */
 .container {
 	margin: 0 auto;
@@ -286,4 +290,22 @@ input:not([type=submit]):not([type=file]) {
 #loginWindow input[type=text],
 #loginWindow input[type=password] {
 	width: 160px;
+}
+
+#lustrumAgenda .date {
+	padding-top: 1em;
+}
+
+#lustrumAgenda dt {
+	font-size: 1.2em;
+	color: #404040;
+	font-variant: small-caps;
+	font-family: sans-serif;
+	font-weight: bold;
+	border-bottom: 1px #404040 solid;
+	margin-bottom: 3px;
+}
+
+#lustrumAgenda dd {
+	margin-left: 0;
 }

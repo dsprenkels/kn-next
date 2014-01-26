@@ -25,7 +25,6 @@ $context = array();
 // do page-specific tasks
 $action = isset($_GET['action']) ? trim($_GET['action']) : '';
 switch (strtolower($action)) {
-	case 'lustrum':
 	case 'lustrumposter':
 	case 'intro2008':
 	case 'intro2009':
@@ -104,6 +103,9 @@ switch (strtolower($action)) {
 		break;
 	case 'route':
 		$template = 'route.twig';
+		break;
+	case 'lustrum':
+		$template = 'lustrum.twig';
 		break;
 	case 'index':
 	case 'index.php': //alias ...
