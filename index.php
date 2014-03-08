@@ -111,7 +111,7 @@ switch (strtolower($action)) {
 		$template = 'index.twig';
 		break;
 	case 'robots.txt':
-                header('Content-type: text/plain');
+		header('Content-type: text/plain');
 		$template = 'robots.txt';
 		break;
 	default:
