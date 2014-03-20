@@ -1,15 +1,11 @@
 /* body */
 body {
+	background-color: #000;
 	color: #102020;
 	line-height: 1.6em;
 	font-family: serif;
-	background-color: #f0f0f0;
-	background-image: url('../img/uiltje.png');
-	background-repeat: no-repeat;
-	background-position: 100% 400px;
-}
-body.header-collapsed {
-	background-position: 100% 70px;
+	display: flex;
+	flex-direction: column;
 }
 
 html,
@@ -59,14 +55,14 @@ body.header-collapsed #header {
 	top: -330px;
 }
 #header, #footer {
+	flex-shrink: 0;
 	width: 100%;
 	background-color: #000;
 	font-family: sans-serif;
 }
 #footer {
 	padding: 4px 0;
-	height: 24px;
-	font-size: 14px;
+	font-size: 0.9em;
 	line-height: 1.6em;
 	box-shadow: 0px -2px 3px 0px #a31e1b;
 	color: #929292;
@@ -148,17 +144,25 @@ body.header-collapsed #header {
 
 /* content */
 #content {
-	position: relative;
-	margin: 0 auto;
+	flex-grow: 1;
+	flex-shrink: 0;
 	padding-top: 420px;
 	padding-bottom: 10px;
-	width: 100%;
 	min-height: 300px;
-	min-height: calc(100% - 462px);
+	background-color: #f0f0f0;
+	background-image: url('../img/uiltje.png');
+	background-repeat: no-repeat;
+	background-position: 100% 400px;
 }
 body.header-collapsed #content {
 	padding-top: 90px;
-	min-height: calc(100% - 132px);
+	background-position: 100% 70px;
+}
+
+@supports (display: flex) {
+	#content {
+		min-height: 0; /* initial value */
+	}
 }
 
 /* content */
