@@ -8,9 +8,19 @@
 {% block content %}
 {{ parent() }}
 
-<dl>
-	<dt>Als je lid wilt worden kun je altijd een mailtje sturen naar:</dt>
-	<dd>{{  email("secretaris@karpenoktem.nl") }}</dd>
-</dl>
-<p>Je mag ook als je geen lid bent gewoon bij ons langskomen.</p>
+<p>
+	Kom eens een keer langs bij een van onze
+	<a href="/agenda">activiteiten</a>, bijvoorbeeld de maandagavond
+	borrels in de <a href="/route">Villa van Schaeck</a>, of stuur een
+	e-mailtje naar {{ email("secretaris@karpenoktem.nl") }} en dan is het
+	zo geregeld!
+</p>
+
+<h2>uitschrijven</h2>
+
+<p>
+	Wil je je uitschrijven? Stuur ook dan een mailtje naar
+        {{ email("secretaris@karpenoktem.nl") }}.
+</p>
+
 {% endblock content %}
