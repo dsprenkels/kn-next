@@ -110,6 +110,17 @@ switch (strtolower($action)) {
 		$action = 'index';
 		$template = 'index.twig';
 		break;
+	case 'baragenda': // redirect
+		header('Status: 301 Moved Permanently', true, 301);
+		header('Location: /planning');
+		exit;
+	case 'robots.txt':
+		header('Content-type: text/plain');
+		$template = 'robots.txt';
+		break;
+	case 'ledenmail-template':
+		$template = 'ledenmail-template.twig';
+		break;
 	default:
 		if(preg_match('/^bestuur([0-9]+)$/', $action, $m) && file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
 			$action = 'bestuur'. $m[1];
@@ -122,7 +133,7 @@ switch (strtolower($action)) {
 }
 
 $context['action'] = $action;
-if($action == 'index' || $action == 'agenda') {
+if($action === 'index' || $action === 'agenda' || $action === 'ledenmail-template') {
 	$agenda_json = file_get_contents(AGENDA_JSON_FILE);
 	if (! $agenda_json) {
 		die('Fout bij het laden van de agenda');

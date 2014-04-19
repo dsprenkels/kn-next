@@ -76,8 +76,8 @@ def print_events(events):
         processed_events = []
         # Loop over the *sorted* list
         for title, content, start_date, end_date in sorted(events, key=lambda e: e[2]):
-            short_date = (start_date.strftime('%a'), str(start_date.day))
-            month = start_date.strftime('%B')
+	    short_date = (start_date.strftime('%a'), str(start_date.day))
+	    month = start_date.strftime('%B')
             content = "" if content is None else content.strip()
             content = content.replace("\n", "<br/>")
             content = erepl.sub(erepl_replace, content)
@@ -95,7 +95,7 @@ def print_events(events):
                         end_date.day)
             processed_events.append({'title': title, 'description': content,
                 'start_date': start_date, 'end_date': end_date,
-                'short_date': short_date, 'month': month})
+		'short_date': short_date, 'month': month})
 
         # dump the events to stdout
         dump(processed_events, sys.stdout)
