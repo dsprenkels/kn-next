@@ -113,10 +113,6 @@ switch (strtolower($action)) {
 		$action = 'index';
 		$template = 'index.twig';
 		break;
-	case 'baragenda': // redirect
-		header('Status: 301 Moved Permanently', true, 301);
-		header('Location: /planning');
-		exit;
 	case 'robots.txt':
 		header('Content-type: text/plain');
 		$template = 'robots.txt';
@@ -124,6 +120,10 @@ switch (strtolower($action)) {
 	case 'ledenmail-template':
 		$template = 'ledenmail-template.twig';
 		break;
+	case 'baragenda': // redirect
+		header('Status: 301 Moved Permanently', true, 301);
+		header('Location: /planning');
+		exit;
 	default:
 		if(preg_match('/^bestuur([0-9]+)$/', $action, $m) && file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
 			$action = 'bestuur'. $m[1];
