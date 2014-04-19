@@ -1,0 +1,19 @@
+
+#lustrumAgenda .date {
+	font-style: italic;
+	float: right;
+}
+
+#lustrumAgenda dt {
+	font-size: 1.2em;
+	color: #404040;
+	font-variant: small-caps;
+	font-family: sans-serif;
+	font-weight: bold;
+	border-bottom: 1px #404040 solid;
+	margin-bottom: 3px;
+}
+
+#lustrumAgenda dd {
+	margin-left: 0;
+}
