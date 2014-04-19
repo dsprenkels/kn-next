@@ -39,7 +39,10 @@ switch (strtolower($action)) {
 	case 'media':
 	case 'merchandise':
 	case 'openweekposter2013':
-	case 'release':
+	case 'release': // return a 410 Gone status
+		header('Status: 410 Gone', true, 410);
+		$template = '410.twig';
+		break;
 	case 'default': // alias ...
 	case 'home':    // alias ...
 		header('Status: 301 Moved Permanently', true, 301);
