@@ -1,0 +1,32 @@
+{% set title = 'Ledenmailtemplate' %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="img/favicon.ico">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+	<ul>
+{% for item in agenda %}
+{% if item.end_date is null %}
+		<li><em>{{ item.start_date }}:</em> {{ item.title }}</li>
+{% else %}
+		<li><em>{{ item.start_date }}&mdash;{{ item.end_date }}:</em> {{ item.title }}</li>
+{% endif %}
+{% endfor %}
+	</ul>
+{% for item in agenda %}
+	<p>
+		<strong>{{ item.title }}</strong><br />
+{% if item.end_date is null %}
+		<em>{{ item.start_date }}</em><br />
+{% else %}
+		<em>{{ item.start_date }}&mdash;{{ item.end_date }}</em><br />
+{% endif %}
+		{{ item.description }}
+	</p>
+{% endfor %}
+</body>
+</html>

@@ -38,7 +38,10 @@ switch (strtolower($action)) {
 	case 'media':
 	case 'merchandise':
 	case 'openweekposter2013':
-	case 'release':
+	case 'release': // return a 410 Gone status
+		header('Status: 410 Gone', true, 410);
+		$template = '410.twig';
+		break;
 	case 'default': // alias ...
 	case 'home':    // alias ...
 		header('Status: 301 Moved Permanently', true, 301);
@@ -116,6 +119,13 @@ switch (strtolower($action)) {
 		header('Content-type: text/plain');
 		$template = 'robots.txt';
 		break;
+	case 'ledenmail-template':
+		$template = 'ledenmail-template.twig';
+		break;
+	case 'baragenda': // redirect
+		header('Status: 301 Moved Permanently', true, 301);
+		header('Location: /planning');
+		exit;
 	default:
 		if(preg_match('/^bestuur([0-9]+)$/', $action, $m) && file_exists(TEMPLATES_DIR .'bestuur/bestuur'. $m[1] .'.twig')) {
 			$action = 'bestuur'. $m[1];
@@ -128,7 +138,7 @@ switch (strtolower($action)) {
 }
 
 $context['action'] = $action;
-if($action == 'index' || $action == 'agenda') {
+if($action === 'index' || $action === 'agenda' || $action === 'ledenmail-template') {
 	$agenda_json = file_get_contents(AGENDA_JSON_FILE);
 	if (! $agenda_json) {
 		die('Fout bij het laden van de agenda');
