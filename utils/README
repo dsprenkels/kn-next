@@ -1,6 +1,6 @@
 One can execute `fetch_agenda.py` by executing the following command:
 
-`$ python fetch_agenda >agenda_config.php`
+`$ python fetch_agenda.py >/tmp/kn-next_agenda.json`
 
 `fetch_agenda.py` has some dependencies, that have to be installed first.
 Both are available through `pip`. Installation may be done in combination
