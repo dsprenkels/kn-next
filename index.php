@@ -36,7 +36,6 @@ switch (strtolower($action)) {
 	case 'introposter2012':
 	case 'introposter2013':
 	case 'links':
-	case 'media':
 	case 'merchandise':
 	case 'openweekposter2013':
 	case 'release':
@@ -95,6 +94,9 @@ switch (strtolower($action)) {
 		break;
 	case 'agenda':
 		$template = 'agenda.twig';
+		break;
+	case 'media':
+		$template = 'media.twig';
 		break;
 	case 'lidworden':
 		$template = 'lidworden.twig';

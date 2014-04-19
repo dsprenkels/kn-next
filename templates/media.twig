@@ -1,0 +1,22 @@
+{% extends 'base.twig' %}
+
+{% set title = 'Media' %}
+
+{% block overMenu %}
+{% endblock overMenu %}
+
+{% block content %}
+{{ parent() }}
+
+<ul>
+	<li>Foto's van <a href="https://karpenoktem.nl/fotos/"
+                >Karpe Noktem</a></li>
+	<li>Foto's van <a
+	href="https://karpenoktem.nl/fotos/index.php?album=pdn"
+                >Pluk de Nacht weekend</a></li>
+	<li>2009: Een reportage van <a
+	href="http://www.youtube.com/watch?v=NLOT1TkZTf4"
+                >Campus in Beeld</a> tijdens onze nachtpicknick</li>
+</ul>
+
+{% endblock content %}
