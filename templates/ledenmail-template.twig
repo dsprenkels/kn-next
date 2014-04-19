@@ -11,9 +11,9 @@
 	<ul>
 {% for item in agenda %}
 {% if item.end_date is null %}
-		<li><em>{{ item.start_date }}</em></li>
+		<li><em>{{ item.start_date }}:</em> {{ item.title }}</li>
 {% else %}
-		<li><em>{{ item.start_date }}&mdash;{{ item.end_date }}</em></li>
+		<li><em>{{ item.start_date }}&mdash;{{ item.end_date }}:</em> {{ item.title }}</li>
 {% endif %}
 {% endfor %}
 	</ul>
