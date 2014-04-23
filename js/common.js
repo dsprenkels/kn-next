@@ -24,7 +24,14 @@ function isMobile() {
 }
 
 $(document).ready(function() {
-	headerCollapsed = $(document.body).hasClass('header-collapsed');
+	$(document.body).removeClass('header-collapsed');
+	if (sessionStorage['visited']) {
+		window.scroll(0, 330);
+	} else {
+		$(document.body).addClass('firstView');
+	}
+	sessionStorage['visited'] = 'true';
+
 	// Menubar half-fixed
 	function fixHeader(e) {
 		var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
@@ -32,15 +39,13 @@ $(document).ready(function() {
 		if (shouldBeCollapsed !== headerCollapsed) {
 			headerCollapsed = shouldBeCollapsed;
 			if (shouldBeCollapsed) {
-				console.log('adding collapsed class');
 				$('#header').addClass('collapsed');
 			} else {
-				console.log('removing collapsed class');
 				$('#header').removeClass('collapsed');
 			}
 		}
 	}
-	if (!headerCollapsed && !isMobile()) {
+	if (!isMobile()) {
 		fixHeader();
 		$(window).scroll(fixHeader);
 	}

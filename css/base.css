@@ -1,4 +1,6 @@
-/* body */
+html {
+	overflow-y: scroll;
+}
 body {
 	background-color: #000;
 	color: #102020;
@@ -6,6 +8,11 @@ body {
 	font-family: serif;
 	display: flex;
 	flex-direction: column;
+	min-height: 1354px;
+	min-height: calc(100% + 330px);
+}
+body.firstView {
+	min-height: 100%;
 }
 
 html,
