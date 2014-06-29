@@ -14,11 +14,11 @@
 	<script type="text/javascript" src="js/common.js"></script>
 {% endblock head %}
 </head>
-<body>
+<body class="header-collapsed">
 	<div id="header">
 		{% from 'macros.twig' import header_link as header_link %}
 		<div class="container">
-			<div id="logo"><img id="collapser" src="img/up.png" onclick="collapseHeader(this);" /> {{ header_link(action, '', '<img src="img/logo.png" alt="Karpe Noktem" width="310" height="41">') }}</div>
+			<div id="logo">{{ header_link(action, '', '<img src="img/logo.png" alt="Karpe Noktem" width="310" height="41">') }}</div>
 			<div id="navigator" class="container">
 				<ul>
 					<li>{{ header_link(action, 'agenda', 'agenda') }}</li>
@@ -74,13 +74,13 @@
 {% endif %}
 {% endblock content %}
 		</div>
-		<div id="footer">
-			<div class="container">
+	</div>
+	<div id="footer">
+		<div class="container">
 {% block footer %}
-				&copy; Alternatieve studentenvereniging Karpe Noktem
-				<small><a id="scrollUp" href="#">Terug naar boven</a></small>
+			&copy; Alternatieve studentenvereniging Karpe Noktem
+			<small><a id="scrollUp" href="#">Terug naar boven</a></small>
 {% endblock footer %}
-			</div>
 		</div>
 	</div>
 </body>

@@ -1,6 +1,5 @@
-var headerHeight = 400;
-var collapsedHeaderHeight = 70;
-var headerFixedThreshold = headerHeight - collapsedHeaderHeight;
+var headerFixedThreshold = 330;
+var headerCollapsed;
 
 function getCsrftoken() {
 	if ($.cookie('csrftoken')) {
@@ -24,50 +23,43 @@ function isMobile() {
 	return 'ontouchstart' in document.documentElement && (window.matchMedia ? window.matchMedia('(max-device-width: 800px)') : true);
 }
 
-// Menubar half-fixed
-if (! isMobile()) {
-	$(window).scroll(function(e) {
-		if($.cookie('collapseHeader') === 'y') {
-			$('#header').css({
-				position: 'fixed',
-				top: -headerFixedThreshold
-			});
-		} else if($(window).scrollTop() > headerFixedThreshold) {
-			$('#header').css({
-				position: 'fixed',
-				top: -headerFixedThreshold
-			});
-		} else {
-			$('#header').css({
-				position: 'absolute',
-				top: 0
-			});
-		}
-	});
-}
-
 $(document).ready(function() {
-    // ScrollUp animation
+	$(document.body).removeClass('header-collapsed');
+	if (sessionStorage['visited']) {
+		window.scroll(0, 330);
+	} else {
+		$(document.body).addClass('firstView');
+	}
+	sessionStorage['visited'] = 'true';
+
+	// Menubar half-fixed
+	function fixHeader(e) {
+		var shouldBeCollapsed = $(window).scrollTop() > headerFixedThreshold;
+		// don't touch the DOM if that's not needed!
+		if (shouldBeCollapsed !== headerCollapsed) {
+			headerCollapsed = shouldBeCollapsed;
+			if (shouldBeCollapsed) {
+				$('#header').addClass('collapsed');
+			} else {
+				$('#header').removeClass('collapsed');
+			}
+		}
+	}
+	if (!isMobile()) {
+		fixHeader();
+		$(window).scroll(fixHeader);
+	}
+
+	// ScrollUp animation
 	$("#scrollUp").click(function(event) {
 		var sTop = 0;
-		if(!isMobile && $.cookie('collapseHeader') != 'y') {
+		if(!isMobile() && !headerCollapsed) {
 			sTop = headerFixedThreshold;
 		}
 		$('html, body').animate({scrollTop: sTop}, 300);
 		event.preventDefault();
 		return false;
 	});
-
-	// read menu state collapse state from cookie
-	if($.cookie('collapseHeader') === 'y') {
-        $('#header').css({
-			position: 'fixed',
-			top: -headerFixedThreshold
-		});
-		$('#content').css({
-			top: collapsedHeaderHeight
-		});
-	}
 
 	if (!isMobile()) {
 		$('#csrfmiddlewaretoken').val(getCsrftoken());
@@ -88,43 +80,6 @@ $(document).ready(function() {
 		});
 	}
 });
-
-function collapseHeader(img) {
-	if($.cookie('collapseHeader') === 'y') {
-		$.cookie('collapseHeader', 'n');
-		img.src = 'img/up.png';
-
-		$('#content').css({
-			top: headerHeight
-		});
-
-		$('#header').css({
-			height: headerHeight
-		});
-
-		if($(window).scrollTop() > headerFixedThreshold) {
-			$('#header').css({
-				position: 'fixed',
-				top: -headerFixedThreshold
-			});
-		} else {
-			$('#header').css({
-				position: 'absolute',
-				top: 0
-			});
-		}
-	} else {
-		$.cookie('collapseHeader', 'y');
-		img.src = 'img/down.png';
-        $('#header').css({
-			position: 'fixed',
-			top: -headerFixedThreshold
-		});
-		$('#content').css({
-			top: collapsedHeaderHeight
-		});
-	}
-}
 
 // Implement rot13 for email obscurification
 function rot13 (s)
