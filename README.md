@@ -1,6 +1,8 @@
 kn-next
 =======
 
+## This repository is not used anymore. The code has been merged into [kninfra](https://github.com/karpenoktem/kninfra).
+
 Clone the repository into a PHP-enabled webserver.
 You'll have to load the agenda with a CRON-script, or for testing by hand:
 
